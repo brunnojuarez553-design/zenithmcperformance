@@ -1,0 +1,3210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zenith Performance & Repair | Orlando's Premier Auto Workshop</title>
+<meta name="description" content="Orlando's most advanced automotive performance center. Engine repair, diagnostics, performance upgrades & more. Book your appointment today.">
+<meta property="og:title" content="Zenith Performance & Repair — Orlando FL">
+<meta property="og:description" content="Where precision meets performance. Orlando's premier auto workshop.">
+<link rel="icon" type="image/png" href="https://res.cloudinary.com/dgp7uhps3/image/upload/v1782696990/IMG_8216_npk7ow_tel8y4.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Bebas+Neue&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<style>
+:root {
+  --black: #050505;
+  --black-2: #0a0a0a;
+  --black-3: #111111;
+  --gray-dark: #1a1a1a;
+  --gray-mid: #2a2a2a;
+  --gray-light: #888888;
+  --white: #ffffff;
+  --white-dim: rgba(255,255,255,0.7);
+  --violet: #7B2FFF;
+  --violet-light: #9B5FFF;
+  --violet-glow: rgba(123,47,255,0.3);
+  --violet-subtle: rgba(123,47,255,0.08);
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+  --font-ui: 'Inter', sans-serif;
+  --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+  --transition-slow: 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── CUSTOM CURSOR ── */
+#cursor {
+  width: 12px; height: 12px;
+  background: var(--violet);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9999;
+  transition: transform 0.15s ease, width 0.2s ease, height 0.2s ease, background 0.2s ease;
+  transform: translate(-50%,-50%);
+  mix-blend-mode: normal;
+}
+#cursor-follower {
+  width: 40px; height: 40px;
+  border: 1px solid rgba(123,47,255,0.5);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: transform 0.4s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+}
+body:hover #cursor { opacity: 1; }
+a:hover ~ #cursor, button:hover ~ #cursor { transform: translate(-50%,-50%) scale(2); }
+
+/* ── LANGUAGE TOGGLE ── */
+.lang-toggle {
+  display: flex; align-items: center; gap: 2px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 100px;
+  padding: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+.lang-opt {
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray-light);
+  transition: all 0.25s ease;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  letter-spacing: 0.05em;
+}
+.lang-opt.active {
+  background: var(--violet);
+  color: #fff;
+}
+.lang-opt:hover:not(.active) { color: #fff; }
+
+/* ── NAVBAR ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 20px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: all 0.4s ease;
+}
+nav.scrolled {
+  background: rgba(5,5,5,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 14px 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+}
+.nav-logo-icon {
+  height: 38px; width: auto;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 0 12px var(--violet-glow));
+}
+.nav-logo-text {
+  font-size: 14px; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--white);
+  font-family: var(--font-ui);
+}
+.nav-logo-text span { color: var(--violet); }
+.nav-links {
+  display: flex; align-items: center; gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  text-decoration: none; color: rgba(255,255,255,0.6);
+  font-size: 13px; font-weight: 400; letter-spacing: 0.06em;
+  text-transform: uppercase; font-family: var(--font-ui);
+  transition: color 0.2s ease;
+  position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 1px; background: var(--violet);
+  transition: width 0.25s ease;
+}
+.nav-links a:hover { color: #fff; }
+.nav-links a:hover::after { width: 100%; }
+.nav-right { display: flex; align-items: center; gap: 16px; }
+.btn-nav {
+  padding: 9px 22px;
+  background: var(--violet);
+  border: none; border-radius: 100px;
+  color: #fff; font-size: 13px; font-weight: 500;
+  cursor: pointer; font-family: var(--font-ui);
+  letter-spacing: 0.04em;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 20px rgba(123,47,255,0.4);
+}
+.btn-nav:hover {
+  background: var(--violet-light);
+  box-shadow: 0 0 30px rgba(123,47,255,0.6);
+  transform: translateY(-1px);
+}
+
+/* hamburger */
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
+.hamburger span { width: 24px; height: 1.5px; background: #fff; transition: all 0.3s; display: block; }
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+
+.mobile-menu {
+  display: none; position: fixed; inset: 0; z-index: 999;
+  background: rgba(5,5,5,0.97); backdrop-filter: blur(20px);
+  flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s;
+}
+.mobile-menu.open { opacity: 1; pointer-events: all; display: flex; }
+.mobile-menu a { font-size: 32px; font-family: var(--font-display); letter-spacing: 2px; color: #fff; text-decoration: none; }
+.mobile-menu a:hover { color: var(--violet); }
+
+/* ── HERO ── */
+.hero {
+  height: 100vh; min-height: 700px;
+  position: relative; overflow: hidden;
+  display: flex; align-items: center;
+}
+.hero-video-bg {
+  position: absolute; inset: 0; z-index: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    linear-gradient(90deg, rgba(5,5,5,0.9) 0%, rgba(5,5,5,0.55) 38%, rgba(5,5,5,0.12) 68%, rgba(5,5,5,0.3) 100%),
+    radial-gradient(ellipse 60% 60% at 15% 45%, rgba(123,47,255,0.18) 0%, transparent 60%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 0 48px; max-width: 700px;
+  padding-top: 80px;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 14px; border-radius: 100px;
+  background: rgba(123,47,255,0.12); border: 1px solid rgba(123,47,255,0.3);
+  font-size: 11px; font-weight: 500; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--violet-light);
+  font-family: var(--font-ui); margin-bottom: 28px;
+}
+.hero-eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--violet); display: block; animation: pulse-dot 2s infinite; }
+@keyframes pulse-dot { 0%,100%{box-shadow:0 0 0 0 rgba(123,47,255,0.7)} 70%{box-shadow:0 0 0 8px rgba(123,47,255,0)} }
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(42px, 5.5vw, 80px);
+  line-height: 0.95;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 24px;
+}
+.hero-title .accent { color: var(--violet); display: block; }
+.hero-subtitle {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.hero-sub-item {
+  font-size: 12px; font-weight: 400; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(255,255,255,0.45);
+  font-family: var(--font-ui);
+  display: flex; align-items: center; gap: 6px;
+}
+.hero-sub-item::before { content: '//'; color: var(--violet); font-weight: 700; }
+.hero-cta { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.btn-primary {
+  padding: 16px 32px; border-radius: 100px;
+  background: var(--violet); border: none;
+  color: #fff; font-size: 14px; font-weight: 500;
+  cursor: pointer; font-family: var(--font-ui);
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 30px rgba(123,47,255,0.5);
+  position: relative; overflow: hidden;
+}
+.btn-primary::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+  opacity: 0; transition: opacity 0.3s;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 50px rgba(123,47,255,0.7); }
+.btn-primary:hover::after { opacity: 1; }
+.btn-secondary {
+  padding: 15px 32px; border-radius: 100px;
+  background: transparent; border: 1px solid rgba(255,255,255,0.2);
+  color: #fff; font-size: 14px; font-weight: 400;
+  cursor: pointer; font-family: var(--font-ui);
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+}
+.btn-secondary:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.05); transform: translateY(-2px); }
+.hero-scroll {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: rgba(255,255,255,0.3); font-size: 11px; letter-spacing: 0.15em;
+  font-family: var(--font-ui); text-transform: uppercase;
+}
+.scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, rgba(123,47,255,0.8), transparent);
+  animation: scroll-line-anim 2s ease-in-out infinite;
+}
+@keyframes scroll-line-anim { 0%,100%{height:20px;opacity:0.5} 50%{height:40px;opacity:1} }
+
+/* ── SECTIONS SHARED ── */
+section { padding: 120px 48px; position: relative; }
+.section-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--violet);
+  font-family: var(--font-ui); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-eyebrow::before { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--violet); }
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(42px, 6vw, 90px);
+  line-height: 0.95;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 24px;
+}
+.section-desc {
+  font-size: 16px; font-weight: 300; line-height: 1.7;
+  color: rgba(255,255,255,0.5); max-width: 560px;
+}
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── STATS BAR ── */
+.stats-bar {
+  background: var(--black-3);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding: 40px 48px;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  position: relative;
+}
+.stat-item {
+  padding: 20px 40px; text-align: center;
+  position: relative;
+}
+.stat-item::after {
+  content: ''; position: absolute; right: 0; top: 20%; bottom: 20%;
+  width: 1px; background: rgba(255,255,255,0.07);
+}
+.stat-item:last-child::after { display: none; }
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 56px; line-height: 1; letter-spacing: 1px;
+  color: #fff; margin-bottom: 6px;
+}
+.stat-num .unit { color: var(--violet); }
+.stat-label { font-size: 12px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; text-transform: uppercase; font-family: var(--font-ui); }
+
+/* ── ABOUT ── */
+#about {
+  background: var(--black);
+  position: relative;
+  overflow: hidden;
+}
+#about::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://res.cloudinary.com/dgp7uhps3/image/upload/v1782762106/IMG_8255_f31z8p.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.13;
+  z-index: 0;
+  pointer-events: none;
+}
+#about > * {
+  position: relative;
+  z-index: 1;
+}
+#about::after {
+  content: '';
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(123,47,255,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.about-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.about-eyebrow {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em;
+  color: var(--violet-light); font-family: var(--font-ui);
+  display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
+}
+.about-eyebrow::before { content:''; display:block; width:24px; height:1px; background:var(--violet); }
+.about-headline {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4vw, 54px);
+  line-height: 1;
+  letter-spacing: 2px;
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.about-headline span { color: var(--violet-light); }
+.about-body {
+  font-size: 15px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.85;
+  font-weight: 300;
+  margin-bottom: 40px;
+  font-family: var(--font-ui);
+  max-width: 480px;
+}
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.about-stat {
+  padding: 24px 20px;
+  background: var(--black);
+  text-align: center;
+  transition: background 0.3s;
+}
+.about-stat:hover { background: rgba(123,47,255,0.05); }
+.about-stat-num {
+  font-family: var(--font-display);
+  font-size: 36px;
+  color: #fff;
+  letter-spacing: 1px;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.about-stat-num span { color: var(--violet-light); }
+.about-stat-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.3);
+  font-family: var(--font-ui);
+}
+.about-visual {
+  position: relative;
+}
+.about-img-wrap {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  background: var(--black-2);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.about-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.85) contrast(1.05);
+  transition: transform 0.6s ease;
+}
+.about-img-wrap:hover img { transform: scale(1.03); }
+.about-badge {
+  position: absolute;
+  bottom: 24px; left: 24px;
+  background: rgba(10,10,10,0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(123,47,255,0.25);
+  border-radius: 14px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.about-badge-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--violet), #5B0FDF);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  box-shadow: 0 0 16px rgba(123,47,255,0.4);
+  flex-shrink: 0;
+}
+.about-badge-text { font-family: var(--font-ui); }
+.about-badge-main { font-size: 13px; font-weight: 600; color: #fff; }
+.about-badge-sub { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+.about-tag {
+  position: absolute;
+  top: 24px; right: -16px;
+  background: var(--violet);
+  color: #fff;
+  font-size: 10px;
+  font-family: var(--font-ui);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: 100px;
+  box-shadow: 0 4px 20px rgba(123,47,255,0.5);
+  font-weight: 500;
+}
+.about-values {
+  display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px;
+}
+.about-value {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 16px 20px;
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.02);
+  transition: all 0.3s;
+}
+.about-value:hover {
+  border-color: rgba(123,47,255,0.2);
+  background: rgba(123,47,255,0.04);
+}
+.about-value-icon {
+  width: 36px; height: 36px; flex-shrink: 0;
+  border-radius: 10px;
+  background: rgba(123,47,255,0.1);
+  border: 1px solid rgba(123,47,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  margin-top: 1px;
+}
+.about-value-title {
+  font-size: 14px; font-weight: 600; color: #fff;
+  margin-bottom: 3px; font-family: var(--font-ui);
+}
+.about-value-desc {
+  font-size: 12.5px; color: rgba(255,255,255,0.35);
+  line-height: 1.6; font-family: var(--font-ui);
+}
+@media (max-width: 900px) {
+  .about-layout { grid-template-columns: 1fr; gap: 48px; }
+  .about-visual { display: none; }
+  .about-stats { grid-template-columns: repeat(3,1fr); }
+}
+
+/* ── WHY CHOOSE ── */
+#why {
+  position: relative;
+}
+#why::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://res.cloudinary.com/dgp7uhps3/image/upload/v1782705861/IMG_8231_kxowue.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.13;
+  z-index: 0;
+  pointer-events: none;
+}
+#why > * {
+  position: relative;
+  z-index: 1;
+}
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 16px; overflow: hidden;
+  margin-top: 64px;
+}
+.why-card {
+  background: var(--black-2); padding: 40px 36px;
+  position: relative; overflow: hidden;
+  transition: background 0.3s ease;
+  cursor: default;
+}
+.why-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(123,47,255,0.12), transparent 60%);
+  opacity: 0; transition: opacity 0.4s;
+}
+.why-card:hover::before { opacity: 1; }
+.why-card:hover { background: rgba(123,47,255,0.05); }
+.why-card-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: rgba(123,47,255,0.1); border: 1px solid rgba(123,47,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+.why-card:hover .why-card-icon {
+  background: rgba(123,47,255,0.2); border-color: rgba(123,47,255,0.5);
+  box-shadow: 0 0 20px rgba(123,47,255,0.3);
+  transform: scale(1.1);
+}
+.why-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 10px; color: #fff; }
+.why-card p { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.7; font-weight: 300; }
+.why-card-number {
+  position: absolute; top: 24px; right: 24px;
+  font-family: var(--font-display); font-size: 48px;
+  color: rgba(255,255,255,0.03); letter-spacing: -1px; line-height: 1;
+}
+
+/* ── SERVICES ── */
+.services-bg {
+  background: var(--black-2);
+  position: relative;
+}
+.services-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://res.cloudinary.com/dgp7uhps3/image/upload/v1782705155/IMG_8219_cpxfpr.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.13;
+  z-index: 0;
+  pointer-events: none;
+}
+.services-bg > * {
+  position: relative;
+  z-index: 1;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px; margin-top: 64px;
+}
+.service-card {
+  background: var(--black-3); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px; overflow: hidden;
+  transition: all 0.35s ease;
+  cursor: pointer; position: relative;
+}
+.service-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: var(--violet); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.service-card:hover { border-color: rgba(123,47,255,0.3); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+.service-card:hover::after { transform: scaleX(1); }
+.service-img-wrap {
+  height: 160px; overflow: hidden;
+  background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.service-emoji { font-size: 56px; transition: transform 0.35s ease; }
+.service-card:hover .service-emoji { transform: scale(1.15); }
+.service-img-overlay {
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(123,47,255,0.15), transparent 70%);
+  opacity: 0; transition: opacity 0.35s;
+}
+.service-card:hover .service-img-overlay { opacity: 1; }
+.service-body { padding: 24px; }
+.service-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.service-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; margin-bottom: 16px; }
+.service-cta {
+  font-size: 12px; font-weight: 500; color: var(--violet);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--font-ui);
+  transition: gap 0.2s;
+}
+.service-card:hover .service-cta { gap: 10px; }
+.service-cta::after { content: '→'; }
+
+/* ── BRANDS ── */
+.brands-section { padding: 80px 0; overflow: hidden; }
+.brands-track {
+  display: flex; gap: 80px; align-items: center;
+  animation: brands-scroll 30s linear infinite;
+  width: max-content;
+}
+.brands-track-reverse { animation-direction: reverse; }
+@keyframes brands-scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.brand-item {
+  font-family: var(--font-display); font-size: 28px; letter-spacing: 3px;
+  color: rgba(255,255,255,0.12); text-transform: uppercase;
+  white-space: nowrap; transition: color 0.3s;
+  cursor: default;
+}
+.brand-item:hover { color: rgba(255,255,255,0.5); }
+.brands-fade-l, .brands-fade-r {
+  position: absolute; top: 0; bottom: 0; width: 200px; z-index: 1; pointer-events: none;
+}
+.brands-fade-l { left: 0; background: linear-gradient(90deg, var(--black), transparent); }
+.brands-fade-r { right: 0; background: linear-gradient(-90deg, var(--black), transparent); }
+.brands-section-inner { position: relative; padding: 20px 0; }
+
+/* ── AI ASSISTANT ── */
+.ai-section {
+  background: var(--black-2);
+  position: relative;
+}
+.ai-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://res.cloudinary.com/dgp7uhps3/image/upload/v1782705860/IMG_8230_hfxywh.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.13;
+  z-index: 0;
+  pointer-events: none;
+}
+.ai-section > * {
+  position: relative;
+  z-index: 1;
+}
+.ai-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; margin-top: 64px; }
+.ai-info h2 { font-family: var(--font-display); font-size: clamp(36px, 4vw, 64px); line-height: 0.95; text-transform: uppercase; margin-bottom: 20px; }
+.ai-info p { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.8; margin-bottom: 32px; }
+.ai-features { display: flex; flex-direction: column; gap: 12px; }
+.ai-feat {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 14px; color: rgba(255,255,255,0.6); font-family: var(--font-ui);
+}
+.ai-feat-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: rgba(123,47,255,0.1); border: 1px solid rgba(123,47,255,0.2);
+  display: flex; align-items: center; justify-content: center; font-size: 16px;
+  flex-shrink: 0;
+}
+.chat-widget {
+  background: var(--black-3); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px; overflow: hidden;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+}
+.chat-header {
+  padding: 20px 24px;
+  background: rgba(123,47,255,0.1); border-bottom: 1px solid rgba(123,47,255,0.15);
+  display: flex; align-items: center; gap: 12px;
+}
+.chat-avatar {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--violet); display: flex; align-items: center; justify-content: center;
+  font-size: 18px; box-shadow: 0 0 15px rgba(123,47,255,0.5);
+}
+.chat-title { font-size: 14px; font-weight: 600; }
+.chat-status { font-size: 12px; color: var(--violet-light); display: flex; align-items: center; gap: 5px; }
+.chat-status::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #4ade80; }
+.chat-messages {
+  padding: 24px; height: 340px; overflow-y: auto;
+  display: flex; flex-direction: column; gap: 14px;
+  scroll-behavior: smooth;
+}
+.chat-messages::-webkit-scrollbar { width: 3px; }
+.chat-messages::-webkit-scrollbar-track { background: transparent; }
+.chat-messages::-webkit-scrollbar-thumb { background: rgba(123,47,255,0.3); border-radius: 2px; }
+.msg { max-width: 80%; }
+.msg.bot { align-self: flex-start; }
+.msg.user { align-self: flex-end; }
+.msg-bubble {
+  padding: 12px 16px; border-radius: 14px;
+  font-size: 13.5px; line-height: 1.6;
+  font-family: var(--font-ui);
+}
+.msg.bot .msg-bubble { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.85); border-bottom-left-radius: 4px; }
+.msg.user .msg-bubble { background: var(--violet); color: #fff; border-bottom-right-radius: 4px; }
+.msg-time { font-size: 10px; color: rgba(255,255,255,0.2); margin-top: 4px; font-family: var(--font-ui); }
+.msg.user .msg-time { text-align: right; }
+.typing-indicator { display: flex; gap: 4px; align-items: center; padding: 12px 16px; background: rgba(255,255,255,0.06); border-radius: 14px; border-bottom-left-radius: 4px; width: fit-content; }
+.typing-dot { width: 6px; height: 6px; background: rgba(255,255,255,0.4); border-radius: 50%; animation: typing 1.2s ease-in-out infinite; }
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typing { 0%,80%,100%{transform:scale(1);opacity:0.4} 40%{transform:scale(1.2);opacity:1} }
+.chat-input-area { padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.06); }
+.chat-quick-replies { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.quick-reply {
+  padding: 6px 14px; border-radius: 100px;
+  border: 1px solid rgba(123,47,255,0.3); background: rgba(123,47,255,0.08);
+  color: var(--violet-light); font-size: 12px; cursor: pointer;
+  font-family: var(--font-ui); transition: all 0.2s; white-space: nowrap;
+}
+.quick-reply:hover { background: rgba(123,47,255,0.2); border-color: rgba(123,47,255,0.6); }
+.chat-input-row { display: flex; gap: 10px; }
+.chat-input {
+  flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 100px; padding: 10px 18px; color: #fff; font-size: 13px;
+  font-family: var(--font-ui); outline: none;
+  transition: border-color 0.2s;
+}
+.chat-input:focus { border-color: rgba(123,47,255,0.5); }
+.chat-input::placeholder { color: rgba(255,255,255,0.25); }
+.chat-send {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--violet); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; transition: all 0.2s; flex-shrink: 0;
+  box-shadow: 0 0 15px rgba(123,47,255,0.4);
+}
+.chat-send:hover { background: var(--violet-light); transform: scale(1.05); }
+
+/* ── VIN DECODER ── */
+.vin-section { background: var(--black); }
+.vin-box {
+  max-width: 720px; margin: 64px auto 0;
+  background: var(--black-3); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px; padding: 48px;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+}
+.vin-input-row { display: flex; gap: 12px; margin-bottom: 20px; }
+.vin-input {
+  flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px; padding: 16px 20px; color: #fff; font-size: 15px;
+  font-family: 'Courier New', monospace; letter-spacing: 0.1em;
+  outline: none; transition: border-color 0.2s;
+  text-transform: uppercase;
+}
+.vin-input:focus { border-color: rgba(123,47,255,0.5); }
+.vin-input::placeholder { color: rgba(255,255,255,0.2); letter-spacing: 0.05em; font-family: var(--font-ui); text-transform: none; }
+.btn-vin {
+  padding: 16px 28px; background: var(--violet); border: none; border-radius: 12px;
+  color: #fff; font-size: 14px; font-weight: 500; cursor: pointer;
+  font-family: var(--font-ui); white-space: nowrap; transition: all 0.25s;
+  box-shadow: 0 0 20px rgba(123,47,255,0.4);
+}
+.btn-vin:hover { background: var(--violet-light); box-shadow: 0 0 30px rgba(123,47,255,0.6); }
+.vin-result {
+  display: none; margin-top: 24px; padding: 24px;
+  background: rgba(123,47,255,0.08); border: 1px solid rgba(123,47,255,0.2);
+  border-radius: 12px;
+}
+.vin-result.show { display: block; animation: fade-in-up 0.4s ease; }
+@keyframes fade-in-up { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+.vin-result-car { font-family: var(--font-display); font-size: 32px; letter-spacing: 1px; color: #fff; margin-bottom: 12px; }
+.vin-result-car span { color: var(--violet); }
+.vin-result-details { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+.vin-detail { text-align: center; }
+.vin-detail-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.3); margin-bottom: 4px; }
+.vin-detail-value { font-size: 15px; font-weight: 600; color: #fff; }
+
+/* ── BEFORE / AFTER ── */
+.ba-section {
+  background: var(--black-2);
+  position: relative;
+}
+.ba-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://res.cloudinary.com/dgp7uhps3/image/upload/v1782705861/IMG_8231_kxowue.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.13;
+  z-index: 0;
+  pointer-events: none;
+}
+.ba-section > * {
+  position: relative;
+  z-index: 1;
+}
+.ba-layout { display: flex; justify-content: center; margin-top: 64px; }
+.ba-card {
+  border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; overflow: hidden;
+  position: relative; background: var(--black-3);
+  max-width: 780px; width: 100%;
+}
+.ba-slider-wrap {
+  position: relative; height: 440px; overflow: hidden; cursor: ew-resize;
+  user-select: none;
+}
+.ba-before, .ba-after {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 80px; font-family: var(--font-display);
+  letter-spacing: 4px;
+}
+.ba-before {
+  background: linear-gradient(135deg, #0f0f0f, #1e1e1e);
+  color: rgba(255,255,255,0.1);
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+.ba-after {
+  background: linear-gradient(135deg, #0a0a14, #15102a);
+  clip-path: inset(0 50% 0 0);
+  color: rgba(123,47,255,0.3);
+  transition: clip-path 0s;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+.ba-divider {
+  position: absolute; top: 0; bottom: 0; left: 50%; width: 2px;
+  background: var(--violet); z-index: 2; transform: translateX(-50%);
+}
+.ba-divider-handle {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--violet); display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: #fff; box-shadow: 0 0 20px rgba(123,47,255,0.6); z-index: 3;
+  cursor: ew-resize;
+}
+.ba-label {
+  position: absolute; top: 16px; z-index: 4;
+  padding: 4px 12px; border-radius: 100px;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  font-family: var(--font-ui);
+}
+.ba-label.before { left: 16px; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); }
+.ba-label.after { right: 16px; background: rgba(123,47,255,0.3); color: var(--violet-light); }
+.ba-info { padding: 24px; }
+.ba-info h3 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+.ba-info p { font-size: 13px; color: rgba(255,255,255,0.4); }
+
+/* ── CALCULATOR ── */
+.calc-section {
+  background: var(--black);
+  position: relative;
+}
+.calc-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://res.cloudinary.com/dgp7uhps3/image/upload/v1782705857/IMG_8234_ediyed.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.13;
+  z-index: 0;
+  pointer-events: none;
+}
+.calc-section > * {
+  position: relative;
+  z-index: 1;
+}
+.calc-box {
+  max-width: 800px; margin: 64px auto 0;
+  background: var(--black-3); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px; overflow: hidden;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+}
+.calc-header { padding: 32px 40px; background: rgba(123,47,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.05); }
+.calc-header h3 { font-family: var(--font-display); font-size: 28px; letter-spacing: 1px; }
+.calc-body { padding: 40px; }
+.calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+.calc-field label {
+  display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.4); margin-bottom: 8px; font-family: var(--font-ui);
+}
+.calc-select, .calc-input-field {
+  width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px; padding: 13px 16px; color: #fff; font-size: 14px;
+  font-family: var(--font-ui); outline: none; appearance: none;
+  transition: border-color 0.2s;
+}
+.calc-select:focus, .calc-input-field:focus { border-color: rgba(123,47,255,0.5); }
+.calc-select option { background: #111; }
+.calc-result {
+  display: none; margin-top: 8px;
+  background: rgba(123,47,255,0.06); border: 1px solid rgba(123,47,255,0.15);
+  border-radius: 12px; padding: 28px; animation: fade-in-up 0.4s ease;
+}
+.calc-result.show { display: block; }
+.calc-services-list { display: flex; flex-direction: column; gap: 10px; }
+.calc-service-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px; background: rgba(255,255,255,0.03);
+  border-radius: 8px; border-left: 3px solid transparent;
+}
+.calc-service-item.high { border-left-color: #ef4444; }
+.calc-service-item.medium { border-left-color: #f59e0b; }
+.calc-service-item.low { border-left-color: #22c55e; }
+.calc-service-name { font-size: 14px; font-weight: 500; }
+.calc-service-meta { font-size: 12px; color: rgba(255,255,255,0.4); font-family: var(--font-ui); }
+.calc-service-price { font-family: var(--font-display); font-size: 22px; color: var(--violet); letter-spacing: 1px; }
+.calc-total {
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.07); padding-top: 20px; margin-top: 16px;
+}
+.calc-total-label { font-size: 14px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; font-family: var(--font-ui); }
+.calc-total-price { font-family: var(--font-display); font-size: 40px; color: #fff; letter-spacing: 2px; }
+.calc-total-price span { color: var(--violet); }
+
+/* ── TESTIMONIALS ── */
+.testimonials-section {
+  background: var(--black-2);
+  position: relative;
+}
+.testimonials-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://res.cloudinary.com/dgp7uhps3/image/upload/v1782705860/IMG_8233_plvhac.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.13;
+  z-index: 0;
+  pointer-events: none;
+}
+.testimonials-section > * {
+  position: relative;
+  z-index: 1;
+}
+.testimonials-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 20px; margin-top: 64px;
+}
+.testimonial-card {
+  background: var(--black-3); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px; padding: 32px;
+  transition: all 0.3s; cursor: default;
+}
+.testimonial-card:hover {
+  border-color: rgba(123,47,255,0.2); transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+.testimonial-stars { color: #f59e0b; font-size: 14px; margin-bottom: 16px; letter-spacing: 2px; }
+.testimonial-text { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.65); margin-bottom: 24px; font-style: italic; }
+.testimonial-footer { display: flex; align-items: center; gap: 14px; }
+.testimonial-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--violet), #111);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 20px; color: #fff; flex-shrink: 0;
+  border: 2px solid rgba(123,47,255,0.3);
+}
+.testimonial-name { font-size: 14px; font-weight: 600; }
+.testimonial-car { font-size: 12px; color: var(--violet-light); font-family: var(--font-ui); }
+.testimonial-source { font-size: 11px; color: rgba(255,255,255,0.25); display: flex; align-items: center; gap: 4px; margin-top: 2px; font-family: var(--font-ui); }
+
+/* ── LOCATION ── */
+.location-section {
+  background: var(--black);
+  position: relative;
+}
+.location-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://res.cloudinary.com/dgp7uhps3/image/upload/v1782705164/IMG_8223_tpraoq.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.13;
+  z-index: 0;
+  pointer-events: none;
+}
+.location-section > * {
+  position: relative;
+  z-index: 1;
+}
+.location-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; margin-top: 64px; align-items: center; }
+.location-info h3 { font-family: var(--font-display); font-size: 36px; letter-spacing: 1px; margin-bottom: 16px; }
+.location-detail { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 20px; font-family: var(--font-ui); }
+.location-detail-icon { font-size: 20px; margin-top: 2px; flex-shrink: 0; }
+.location-detail-text { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+.location-detail-text strong { color: #fff; font-weight: 500; display: block; }
+.btn-navigate {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 28px; border-radius: 100px;
+  background: rgba(123,47,255,0.12); border: 1px solid rgba(123,47,255,0.3);
+  color: var(--violet-light); font-size: 14px; font-weight: 500; cursor: pointer;
+  font-family: var(--font-ui); text-decoration: none;
+  transition: all 0.3s;
+}
+.btn-navigate:hover { background: rgba(123,47,255,0.25); border-color: rgba(123,47,255,0.6); }
+.map-embed {
+  border-radius: 16px; overflow: hidden; height: 360px;
+  border: 1px solid rgba(255,255,255,0.07);
+  background: #0a0a12;
+  position: relative;
+}
+
+/* ── CONTACT ── */
+.contact-section {
+  background: var(--black-2);
+  position: relative;
+}
+.contact-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://res.cloudinary.com/dgp7uhps3/image/upload/v1782705858/IMG_8232_nnhwse.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.13;
+  z-index: 0;
+  pointer-events: none;
+}
+.contact-section > * {
+  position: relative;
+  z-index: 1;
+}
+.contact-layout { display: grid; grid-template-columns: 1fr 1.3fr; gap: 80px; margin-top: 64px; align-items: start; }
+.contact-form-box {
+  background: var(--black-3); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px; padding: 40px;
+}
+.form-field { margin-bottom: 20px; }
+.form-field label {
+  display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.4); margin-bottom: 8px; font-family: var(--font-ui);
+}
+.form-input, .form-textarea {
+  width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px; padding: 14px 18px; color: #fff; font-size: 14px;
+  font-family: var(--font-ui); outline: none; transition: border-color 0.2s;
+}
+.form-input:focus, .form-textarea:focus { border-color: rgba(123,47,255,0.5); background: rgba(123,47,255,0.03); }
+.form-textarea { resize: vertical; min-height: 100px; }
+.form-input.error, .form-textarea.error { border-color: #ef4444; }
+.error-msg { font-size: 12px; color: #ef4444; margin-top: 4px; font-family: var(--font-ui); display: none; }
+.error-msg.show { display: block; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.btn-submit {
+  width: 100%; padding: 16px; border-radius: 100px;
+  background: var(--violet); border: none; color: #fff;
+  font-size: 15px; font-weight: 500; cursor: pointer;
+  font-family: var(--font-ui); letter-spacing: 0.05em;
+  transition: all 0.3s; box-shadow: 0 0 30px rgba(123,47,255,0.4);
+  margin-top: 8px;
+}
+.btn-submit:hover { background: var(--violet-light); box-shadow: 0 0 50px rgba(123,47,255,0.7); transform: translateY(-1px); }
+.contact-info h3 { font-family: var(--font-display); font-size: 40px; letter-spacing: 1px; margin-bottom: 16px; }
+.contact-info p { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.8; margin-bottom: 32px; }
+.btn-whatsapp {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 32px; border-radius: 100px;
+  background: #25d366; border: none; color: #fff;
+  font-size: 14px; font-weight: 600; cursor: pointer;
+  font-family: var(--font-ui); text-decoration: none;
+  transition: all 0.3s; box-shadow: 0 0 20px rgba(37,211,102,0.3);
+}
+.btn-whatsapp:hover { background: #1da851; transform: translateY(-2px); box-shadow: 0 0 30px rgba(37,211,102,0.5); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--black-3);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 64px 48px 32px;
+}
+.footer-top {
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 48px; margin-bottom: 48px;
+}
+.footer-brand p { font-size: 14px; color: rgba(255,255,255,0.35); line-height: 1.8; margin-top: 16px; max-width: 260px; }
+.footer-col h4 {
+  font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.4); margin-bottom: 20px; font-family: var(--font-ui);
+}
+.footer-col a {
+  display: block; text-decoration: none; color: rgba(255,255,255,0.5);
+  font-size: 14px; margin-bottom: 10px; transition: color 0.2s; font-family: var(--font-ui);
+}
+.footer-col a:hover { color: #fff; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.05); padding-top: 32px;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: gap;
+}
+.footer-copy { font-size: 13px; color: rgba(255,255,255,0.2); font-family: var(--font-ui); }
+.footer-socials { display: flex; gap: 16px; }
+.social-btn {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.07);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.5); font-size: 16px; text-decoration: none;
+  transition: all 0.2s; cursor: pointer;
+}
+.social-btn:hover { background: rgba(123,47,255,0.15); border-color: rgba(123,47,255,0.3); color: var(--violet-light); }
+
+/* ── ZENITH SERVICE ADVISOR FLOATING BTN ── */
+.zsa-fab {
+  position: fixed; bottom: 32px; right: 32px; z-index: 500;
+  width: 60px; height: 60px; border-radius: 50%;
+  background: #0a0a0a;
+  box-shadow: 0 8px 32px rgba(123,47,255,0.5), 0 0 0 2px rgba(123,47,255,0.6);
+  cursor: pointer; border: none;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  animation: zsa-pulse 3s ease-in-out infinite;
+}
+@keyframes zsa-pulse {
+  0%,100%{box-shadow:0 8px 32px rgba(123,47,255,0.5),0 0 0 2px rgba(123,47,255,0.6)}
+  50%{box-shadow:0 8px 48px rgba(123,47,255,0.75),0 0 0 2px rgba(123,47,255,0.9)}
+}
+.zsa-fab:hover { transform: scale(1.08); box-shadow: 0 12px 40px rgba(123,47,255,0.65), 0 0 0 2px var(--violet-light); }
+.zsa-fab-icon { display: flex; align-items: center; justify-content: center; }
+.zsa-fab-label { display: none; }
+.zsa-fab-text { display: none; }
+
+/* ── ZSA INACTIVITY BUBBLE ── */
+.zsa-bubble {
+  position: fixed; bottom: 96px; right: 32px; z-index: 499;
+  background: var(--black-3); border: 1px solid rgba(123,47,255,0.25);
+  border-radius: 16px; padding: 14px 18px; max-width: 260px;
+  font-size: 13px; color: rgba(255,255,255,0.85); font-family: var(--font-ui); line-height: 1.5;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  opacity: 0; pointer-events: none;
+  transform: translateY(8px) scale(0.96);
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.zsa-bubble.show { opacity: 1; pointer-events: all; transform: translateY(0) scale(1); }
+.zsa-bubble-close {
+  position: absolute; top: 8px; right: 10px;
+  background: none; border: none; color: rgba(255,255,255,0.3);
+  cursor: pointer; font-size: 16px; line-height: 1; padding: 2px;
+  transition: color 0.2s;
+}
+.zsa-bubble-close:hover { color: rgba(255,255,255,0.7); }
+.zsa-bubble::after {
+  content: ''; position: absolute; bottom: -8px; right: 28px;
+  width: 14px; height: 8px;
+  background: var(--black-3);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  border-bottom: 1px solid rgba(123,47,255,0.25);
+}
+
+/* ── ZSA MODAL OVERLAY ── */
+.zsa-overlay {
+  position: fixed; inset: 0; z-index: 9000;
+  background: rgba(5,5,5,0.85); backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.35s ease;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+}
+.zsa-overlay.open { opacity: 1; pointer-events: all; }
+
+/* ── ZSA MODAL ── */
+.zsa-modal {
+  width: 100%; max-width: 520px; max-height: 90vh;
+  background: #0c0c0c;
+  border: 1px solid rgba(123,47,255,0.2);
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.06);
+  transform: scale(0.94) translateY(16px);
+  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+.zsa-overlay.open .zsa-modal { transform: scale(1) translateY(0); }
+
+/* Modal header */
+.zsa-header {
+  padding: 20px 24px;
+  background: linear-gradient(135deg, rgba(123,47,255,0.12), rgba(123,47,255,0.04));
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; gap: 14px;
+  flex-shrink: 0;
+}
+.zsa-header-avatar {
+  width: 42px; height: 42px; border-radius: 12px;
+  background: linear-gradient(135deg, #7B2FFF, #5B0FDF);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+  box-shadow: 0 0 20px rgba(123,47,255,0.4);
+}
+.zsa-header-info { flex: 1; }
+.zsa-header-name { font-size: 14px; font-weight: 600; color: #fff; letter-spacing: 0.02em; }
+.zsa-header-status { font-size: 11px; color: var(--violet-light); display: flex; align-items: center; gap: 5px; margin-top: 2px; font-family: var(--font-ui); }
+.zsa-header-status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #4ade80; display: block; animation: status-pulse 2s infinite; }
+@keyframes status-pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+.zsa-header-close {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: rgba(255,255,255,0.06); border: none; cursor: pointer;
+  color: rgba(255,255,255,0.5); font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; flex-shrink: 0;
+}
+.zsa-header-close:hover { background: rgba(255,255,255,0.12); color: #fff; }
+
+/* Intro screen */
+.zsa-intro {
+  flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 48px 32px; text-align: center; gap: 0;
+}
+.zsa-intro-icon {
+  width: 72px; height: 72px; border-radius: 20px;
+  background: linear-gradient(135deg, rgba(123,47,255,0.2), rgba(123,47,255,0.06));
+  border: 1px solid rgba(123,47,255,0.25);
+  display: flex; align-items: center; justify-content: center; font-size: 32px;
+  margin-bottom: 24px;
+  box-shadow: 0 0 40px rgba(123,47,255,0.15);
+}
+.zsa-intro h3 {
+  font-family: var(--font-display); font-size: 28px; letter-spacing: 1px; color: #fff;
+  margin-bottom: 12px; text-transform: uppercase; line-height: 1;
+}
+.zsa-intro p { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.7; max-width: 340px; margin: 0 auto 32px; font-family: var(--font-ui); }
+.zsa-intro-steps {
+  display: flex; gap: 24px; margin-bottom: 36px; justify-content: center;
+}
+.zsa-intro-step { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.zsa-intro-step-dot {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: rgba(123,47,255,0.1); border: 1px solid rgba(123,47,255,0.2);
+  display: flex; align-items: center; justify-content: center; font-size: 16px;
+}
+.zsa-intro-step span { font-size: 10px; color: rgba(255,255,255,0.35); font-family: var(--font-ui); letter-spacing: 0.05em; text-transform: uppercase; }
+.zsa-start-btn {
+  padding: 16px 40px; border-radius: 100px;
+  background: var(--violet); border: none; color: #fff;
+  font-size: 15px; font-weight: 500; cursor: pointer; font-family: var(--font-ui);
+  letter-spacing: 0.04em;
+  box-shadow: 0 0 30px rgba(123,47,255,0.5);
+  transition: all 0.3s ease; position: relative; overflow: hidden;
+}
+.zsa-start-btn::after { content:''; position:absolute; inset:0; background: linear-gradient(135deg,rgba(255,255,255,0.15),transparent); opacity:0; transition:opacity 0.3s; }
+.zsa-start-btn:hover { transform: translateY(-2px); box-shadow: 0 0 50px rgba(123,47,255,0.7); }
+.zsa-start-btn:hover::after { opacity:1; }
+.zsa-intro-note { font-size: 11px; color: rgba(255,255,255,0.2); font-family: var(--font-ui); margin-top: 14px; }
+
+/* Chat screen */
+.zsa-chat { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+.zsa-messages {
+  flex: 1; padding: 20px; overflow-y: auto;
+  display: flex; flex-direction: column; gap: 12px;
+  scroll-behavior: smooth; min-height: 300px;
+}
+.zsa-messages::-webkit-scrollbar { width: 3px; }
+.zsa-messages::-webkit-scrollbar-track { background: transparent; }
+.zsa-messages::-webkit-scrollbar-thumb { background: rgba(123,47,255,0.3); border-radius: 2px; }
+
+.zsa-msg { display: flex; flex-direction: column; max-width: 82%; animation: msg-in 0.3s ease; }
+@keyframes msg-in { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+.zsa-msg.bot { align-self: flex-start; }
+.zsa-msg.user { align-self: flex-end; }
+.zsa-msg-bubble {
+  padding: 12px 16px; border-radius: 16px;
+  font-size: 13.5px; line-height: 1.65; font-family: var(--font-ui);
+}
+.zsa-msg.bot .zsa-msg-bubble {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.9);
+  border-bottom-left-radius: 4px;
+}
+.zsa-msg.user .zsa-msg-bubble {
+  background: var(--violet);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 4px 16px rgba(123,47,255,0.35);
+}
+.zsa-msg-meta { font-size: 10px; color: rgba(255,255,255,0.2); margin-top: 4px; font-family: var(--font-ui); }
+.zsa-msg.user .zsa-msg-meta { text-align: right; }
+
+/* Thinking indicator */
+.zsa-thinking {
+  align-self: flex-start; display: flex; align-items: center; gap: 8px;
+  padding: 10px 16px; border-radius: 16px; border-bottom-left-radius: 4px;
+  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.06);
+  animation: msg-in 0.3s ease;
+}
+.zsa-thinking-label { font-size: 11px; color: rgba(255,255,255,0.35); font-family: var(--font-ui); letter-spacing: 0.05em; }
+.zsa-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--violet-light); animation: zsa-bounce 1.2s ease-in-out infinite; }
+.zsa-dot:nth-child(2) { animation-delay: 0.15s; }
+.zsa-dot:nth-child(3) { animation-delay: 0.3s; }
+@keyframes zsa-bounce { 0%,80%,100%{transform:translateY(0);opacity:0.4} 40%{transform:translateY(-4px);opacity:1} }
+
+/* Input area */
+.zsa-input-area {
+  padding: 14px 16px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  background: rgba(0,0,0,0.2);
+  flex-shrink: 0;
+}
+.zsa-quick-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.zsa-chip {
+  padding: 5px 12px; border-radius: 100px;
+  border: 1px solid rgba(123,47,255,0.3); background: rgba(123,47,255,0.07);
+  color: var(--violet-light); font-size: 11px; cursor: pointer;
+  font-family: var(--font-ui); transition: all 0.2s; white-space: nowrap;
+}
+.zsa-chip:hover { background: rgba(123,47,255,0.2); border-color: rgba(123,47,255,0.6); color: #fff; }
+.zsa-input-row { display: flex; gap: 8px; align-items: flex-end; }
+.zsa-input {
+  flex: 1; background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 14px; padding: 11px 16px;
+  color: #fff; font-size: 13.5px; font-family: var(--font-ui);
+  outline: none; resize: none; line-height: 1.5;
+  transition: border-color 0.2s;
+  max-height: 100px; overflow-y: auto;
+}
+.zsa-input:focus { border-color: rgba(123,47,255,0.45); }
+.zsa-input::placeholder { color: rgba(255,255,255,0.2); }
+.zsa-send {
+  width: 42px; height: 42px; border-radius: 12px;
+  background: var(--violet); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; transition: all 0.2s; flex-shrink: 0;
+  box-shadow: 0 0 16px rgba(123,47,255,0.4);
+  color: #fff;
+}
+.zsa-send:hover { background: var(--violet-light); transform: scale(1.05); }
+.zsa-send:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+/* Diagnosis card */
+.zsa-diagnosis {
+  margin: 8px 0; padding: 20px;
+  background: linear-gradient(135deg, rgba(123,47,255,0.1), rgba(123,47,255,0.04));
+  border: 1px solid rgba(123,47,255,0.25);
+  border-radius: 16px; animation: msg-in 0.4s ease;
+  font-family: var(--font-ui);
+}
+.zsa-diag-title {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em;
+  color: var(--violet-light); margin-bottom: 14px; display: flex; align-items: center; gap: 6px;
+}
+.zsa-diag-title::before { content:''; display:block; width:16px; height:1px; background:var(--violet); }
+.zsa-diag-vehicle { font-size: 18px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+.zsa-diag-sub { font-size: 12px; color: rgba(255,255,255,0.35); margin-bottom: 16px; }
+.zsa-diag-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.zsa-diag-cell { background: rgba(0,0,0,0.25); border-radius: 10px; padding: 10px 12px; }
+.zsa-diag-cell-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.3); margin-bottom: 3px; }
+.zsa-diag-cell-value { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.9); }
+.zsa-diag-causes { background: rgba(0,0,0,0.2); border-radius: 10px; padding: 12px 14px; margin-bottom: 14px; }
+.zsa-diag-causes-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.3); margin-bottom: 8px; }
+.zsa-diag-cause-item { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: rgba(255,255,255,0.75); margin-bottom: 5px; }
+.zsa-diag-cause-item::before { content:''; width:4px; height:4px; border-radius:50%; background:var(--violet-light); flex-shrink:0; }
+.zsa-confidence { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.zsa-confidence-bar { flex:1; height:4px; background:rgba(255,255,255,0.07); border-radius:2px; overflow:hidden; }
+.zsa-confidence-fill { height:100%; background:linear-gradient(90deg,var(--violet),var(--violet-light)); border-radius:2px; transition:width 1s ease; }
+.zsa-confidence-label { font-size:11px; color:rgba(255,255,255,0.35); white-space:nowrap; }
+.zsa-diag-disclaimer { font-size:10px; color:rgba(255,255,255,0.2); line-height:1.5; border-top:1px solid rgba(255,255,255,0.05); padding-top:10px; }
+
+/* WhatsApp CTA inside chat */
+.zsa-wa-cta {
+  margin: 4px 0; padding: 18px 20px;
+  background: rgba(37,211,102,0.08); border: 1px solid rgba(37,211,102,0.2);
+  border-radius: 16px; font-family: var(--font-ui);
+  animation: msg-in 0.4s ease;
+}
+.zsa-wa-btn {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; padding: 14px; border-radius: 12px;
+  background: #25d366; border: none; color: #fff;
+  font-size: 14px; font-weight: 600; cursor: pointer; font-family: var(--font-ui);
+  letter-spacing: 0.03em; transition: all 0.25s; text-decoration: none;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+  margin-bottom: 10px;
+}
+.zsa-wa-btn:hover { background: #1da851; transform: translateY(-1px); box-shadow: 0 6px 24px rgba(37,211,102,0.45); }
+.zsa-wa-note { font-size: 11px; color: rgba(255,255,255,0.25); text-align: center; line-height: 1.4; }
+
+/* Mobile fullscreen */
+@media (max-width: 640px) {
+  .zsa-overlay { padding: 0; align-items: flex-end; }
+  .zsa-modal { max-width: 100%; max-height: 95vh; border-radius: 24px 24px 0 0; }
+  .zsa-fab { bottom: 20px; right: 16px; padding: 0 16px 0 12px; height: 48px; }
+  .zsa-bubble { right: 16px; max-width: 220px; }
+}
+
+/* ── TOAST ── */
+.toast {
+  position: fixed; bottom: 100px; right: 32px; z-index: 600;
+  background: var(--black-3); border: 1px solid rgba(123,47,255,0.3);
+  border-radius: 12px; padding: 14px 20px;
+  font-size: 13px; font-family: var(--font-ui); color: #fff;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  transform: translateX(120%); transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  max-width: 280px;
+}
+.toast.show { transform: translateX(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1100px) {
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+  .ai-layout { grid-template-columns: 1fr; gap: 48px; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  nav { padding: 16px 20px; }
+  nav.scrolled { padding: 12px 20px; }
+  .nav-links, .nav-right .btn-nav, .nav-right .lang-toggle { display: none; }
+  .hamburger { display: flex; }
+  .nav-right { gap: 10px; }
+
+  section { padding: 72px 20px; }
+
+  /* Hero: el degradado lateral no funciona en una columna angosta —
+     pasamos a un degradado vertical para que el texto siga siendo legible
+     sobre el video y achicamos el alto mínimo para no forzar scroll extra. */
+  .hero { min-height: 600px; }
+  .hero-bg {
+    background:
+      linear-gradient(180deg, rgba(5,5,5,0.4) 0%, rgba(5,5,5,0.7) 55%, rgba(5,5,5,0.88) 100%),
+      radial-gradient(ellipse 90% 50% at 50% 15%, rgba(123,47,255,0.18) 0%, transparent 60%);
+  }
+  .hero-content { padding: 0 20px; padding-top: 90px; max-width: 100%; }
+  .hero-title { font-size: clamp(36px, 9vw, 56px); }
+  .hero-eyebrow { font-size: 10px; }
+  .hero-cta { gap: 10px; }
+  .hero-cta .btn-primary, .hero-cta .btn-secondary { padding: 14px 26px; font-size: 13px; width: 100%; justify-content: center; display: flex; }
+  .hero-cta { flex-direction: column; align-items: stretch; }
+
+  .section-eyebrow { font-size: 10px; }
+  .section-desc { font-size: 14px; }
+
+  .stats-bar { grid-template-columns: repeat(2, 1fr); padding: 28px 20px; }
+  .stat-item { padding: 16px 12px; }
+  .stat-item::after { display: none; }
+  .stat-num { font-size: 38px; }
+
+  .why-grid { grid-template-columns: 1fr; }
+  .why-card { padding: 32px 24px; }
+
+  .services-grid { grid-template-columns: 1fr; }
+
+  .ai-layout { gap: 40px; }
+  .chat-messages { height: 300px; }
+
+  .vin-box { padding: 28px 20px; }
+  .vin-result-details { grid-template-columns: repeat(3, 1fr); gap: 10px 12px; }
+
+  .ba-slider-wrap { height: 320px; }
+  .ba-info { padding: 20px; }
+
+  .calc-box { margin-top: 48px; }
+  .calc-header { padding: 24px 20px; }
+  .calc-body { padding: 24px 20px; }
+  .calc-grid { grid-template-columns: 1fr; gap: 16px; margin-bottom: 24px; }
+  .calc-total { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .calc-total-price { font-size: 32px; }
+  .calc-service-item { flex-wrap: wrap; gap: 6px; }
+
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .testimonial-card { padding: 24px; }
+
+  .location-layout { grid-template-columns: 1fr; gap: 36px; }
+  .map-embed { height: 280px; }
+
+  .contact-layout { grid-template-columns: 1fr; gap: 40px; }
+  .contact-form-box { padding: 24px; }
+  .form-grid { grid-template-columns: 1fr; }
+  .contact-info h3 { font-size: 32px; }
+
+  footer { padding: 48px 20px 24px; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 32px; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+
+  /* Inputs a 16px o más para que iOS Safari no haga zoom automático al tocarlos */
+  .form-input, .form-textarea, .calc-select, .calc-input-field,
+  .chat-input, .vin-input { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .hero-title { font-size: clamp(30px, 10vw, 42px); }
+  .hero-subtitle { gap: 10px 14px; }
+  .hero-sub-item { font-size: 11px; }
+  #navbar .nav-logo-text span { display: none; }
+  #navbar .nav-logo-text { font-size: 12px; }
+
+  .stats-bar { grid-template-columns: 1fr 1fr; }
+  .footer-top { grid-template-columns: 1fr; }
+
+  .vin-input-row { flex-direction: column; }
+  .btn-vin { width: 100%; text-align: center; }
+  .vin-result-details { grid-template-columns: repeat(2, 1fr); }
+  .vin-result-car { font-size: 26px; }
+
+  .calc-total-price { font-size: 28px; }
+
+  .floating-wa { width: 50px; height: 50px; font-size: 22px; bottom: 20px; right: 20px; }
+  .toast { right: 16px; left: 16px; max-width: none; bottom: 88px; }
+}
+
+/* ── MISC ── */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+.text-violet { color: var(--violet); }
+.mt-8 { margin-top: 32px; }
+.divider { width: 100%; height: 1px; background: rgba(255,255,255,0.05); }
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-follower"></div>
+
+<!-- ZENITH SERVICE ADVISOR FLOATING BTN -->
+<button class="zsa-fab" id="zsaFab" onclick="zsaOpen()" aria-label="Zenith Service Advisor">
+  <div class="zsa-fab-icon"><img src="https://res.cloudinary.com/dgp7uhps3/image/upload/v1782696990/IMG_8216_npk7ow_tel8y4.png" alt="Zenith" style="width:40px;height:40px;object-fit:contain;"></div>
+</button>
+
+<!-- ZSA INACTIVITY BUBBLE -->
+<div class="zsa-bubble" id="zsaBubble">
+  <button class="zsa-bubble-close" onclick="zsaCloseBubble()">×</button>
+  👋 Need help with your vehicle? I can prepare a diagnosis before you speak with one of our technicians.
+</div>
+
+<!-- ZSA MODAL -->
+<div class="zsa-overlay" id="zsaOverlay" onclick="zsaOverlayClick(event)">
+  <div class="zsa-modal" id="zsaModal">
+    <!-- Header -->
+    <div class="zsa-header">
+      <div class="zsa-header-avatar">🔧</div>
+      <div class="zsa-header-info">
+        <div class="zsa-header-name">Zenith Service Advisor</div>
+        <div class="zsa-header-status">Online — Ready to assist</div>
+      </div>
+      <button class="zsa-header-close" onclick="zsaClose()">✕</button>
+    </div>
+    <!-- Intro screen -->
+    <div class="zsa-intro" id="zsaIntro">
+      <div class="zsa-intro-icon">🔧</div>
+      <h3>Service Advisor</h3>
+      <p>I'll help identify what may be happening with your vehicle and prepare a complete summary before one of our technicians reviews your case.</p>
+      <div class="zsa-intro-steps">
+        <div class="zsa-intro-step"><div class="zsa-intro-step-dot">🔍</div><span>Diagnose</span></div>
+        <div class="zsa-intro-step"><div class="zsa-intro-step-dot">📋</div><span>Report</span></div>
+        <div class="zsa-intro-step"><div class="zsa-intro-step-dot">💬</div><span>Book</span></div>
+      </div>
+      <button class="zsa-start-btn" onclick="zsaStartChat()">Start Diagnosis</button>
+      <div class="zsa-intro-note">Usually takes less than 2 minutes</div>
+    </div>
+    <!-- Chat screen -->
+    <div class="zsa-chat" id="zsaChat" style="display:none">
+      <div class="zsa-messages" id="zsaMessages"></div>
+      <div class="zsa-input-area">
+        <div class="zsa-quick-chips" id="zsaChips">
+          <button class="zsa-chip" onclick="zsaChip(this)">Strange noise</button>
+          <button class="zsa-chip" onclick="zsaChip(this)">Check engine light</button>
+          <button class="zsa-chip" onclick="zsaChip(this)">Brake issue</button>
+          <button class="zsa-chip" onclick="zsaChip(this)">Engine shaking</button>
+        </div>
+        <div class="zsa-input-row">
+          <textarea class="zsa-input" id="zsaInput" placeholder="Describe what's happening with your vehicle…" rows="1" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();zsaSend()}" oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px'"></textarea>
+          <button class="zsa-send" id="zsaSendBtn" onclick="zsaSend()">↑</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="lang-toggle" style="margin-bottom:8px;" onclick="toggleLang()">
+    <span class="lang-opt" id="mLangEN" onclick="setLang('en',event)">🇺🇸 EN</span>
+    <span class="lang-opt" id="mLangES" onclick="setLang('es',event)">🇪🇸 ES</span>
+  </div>
+  <a href="#services" onclick="closeMenu()" data-i18n="nav_services">Services</a>
+  <a href="#ai-assistant" onclick="closeMenu()" data-i18n="nav_ai">AI Assistant</a>
+  <a href="#testimonials" onclick="closeMenu()" data-i18n="nav_testimonials">Testimonials</a>
+  <a href="#contact" onclick="closeMenu()" data-i18n="nav_contact">Contact</a>
+  <a href="#contact" class="btn-primary" style="border-radius:100px;padding:14px 32px;margin-top:8px;" onclick="closeMenu()" data-i18n="nav_book">Book Now</a>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <img src="https://res.cloudinary.com/dgp7uhps3/image/upload/v1782696990/IMG_8216_npk7ow_tel8y4.png" alt="Zenith Performance & Repair" class="nav-logo-icon">
+    <span class="nav-logo-text">Zenith <span>Performance</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#why" data-i18n="nav_why">Why Zenith</a></li>
+    <li><a href="#services" data-i18n="nav_services">Services</a></li>
+    <li><a href="#ai-assistant" data-i18n="nav_ai">AI Assistant</a></li>
+    <li><a href="#testimonials" data-i18n="nav_testimonials">Testimonials</a></li>
+    <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <span class="lang-opt active" id="langEN" onclick="setLang('en',event)">🇺🇸 EN</span>
+      <span class="lang-opt" id="langES" onclick="setLang('es',event)">🇪🇸 ES</span>
+    </div>
+    <button class="btn-nav" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" data-i18n="nav_book">Book Appointment</button>
+  </div>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <video class="hero-video-bg" autoplay muted loop playsinline poster="">
+    <source src="https://res.cloudinary.com/dgp7uhps3/video/upload/v1782701378/insta_video_19675_mserul.mp4" type="video/mp4">
+  </video>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow" data-i18n="hero_eyebrow">Orlando's Premier Auto Workshop</div>
+    <h1 class="hero-title">
+      <span data-i18n="hero_title_1">YOUR CAR</span>
+      <span class="accent" data-i18n="hero_title_2">DESERVES</span>
+      <span data-i18n="hero_title_3">BETTER.</span>
+    </h1>
+    <div class="hero-subtitle">
+      <span class="hero-sub-item" data-i18n="hero_sub_1">Performance</span>
+      <span class="hero-sub-item" data-i18n="hero_sub_2">Maintenance</span>
+      <span class="hero-sub-item" data-i18n="hero_sub_3">Diagnostics</span>
+      <span class="hero-sub-item" data-i18n="hero_sub_4">Repair</span>
+    </div>
+    <div class="hero-cta">
+      <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" data-i18n="hero_cta_primary">Book Appointment</button>
+      <button class="btn-secondary" onclick="document.getElementById('ai-assistant').scrollIntoView({behavior:'smooth'})" data-i18n="hero_cta_secondary">Free Diagnostic</button>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span data-i18n="hero_scroll">Scroll</span>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item reveal">
+    <div class="stat-num"><span class="counter" data-target="5000">0</span><span class="unit">+</span></div>
+    <div class="stat-label" data-i18n="stat_1">Vehicles Repaired</div>
+  </div>
+  <div class="stat-item reveal" style="transition-delay:0.1s">
+    <div class="stat-num"><span class="counter" data-target="98">0</span><span class="unit">%</span></div>
+    <div class="stat-label" data-i18n="stat_2">Client Satisfaction</div>
+  </div>
+  <div class="stat-item reveal" style="transition-delay:0.2s">
+    <div class="stat-num"><span class="counter" data-target="15">0</span><span class="unit">+</span></div>
+    <div class="stat-label" data-i18n="stat_3">Years of Experience</div>
+  </div>
+  <div class="stat-item reveal" style="transition-delay:0.3s">
+    <div class="stat-num"><span class="counter" data-target="5">0</span><span class="unit">min</span></div>
+    <div class="stat-label" data-i18n="stat_4">Response Time</div>
+  </div>
+</div>
+
+<!-- ABOUT US -->
+<section id="about">
+  <div class="about-layout">
+    <!-- Left: text -->
+    <div class="reveal">
+      <div class="about-eyebrow" data-i18n="about_eyebrow">Who We Are</div>
+      <h2 class="about-headline" data-i18n="about_headline">BUILT ON<br><span>PRECISION.</span><br>DRIVEN BY<br>PASSION.</h2>
+      <p class="about-body" data-i18n="about_body">Zenith Performance & Repair was founded with a single conviction: that every vehicle deserves dealership-level care — without the dealership price tag. Based in Orlando, we've built a reputation among enthusiasts and everyday drivers alike for honest diagnostics, flawless execution, and a commitment to results that speak for themselves.</p>
+      <div class="about-values">
+        <div class="about-value">
+          <div class="about-value-icon">🎯</div>
+          <div>
+            <div class="about-value-title" data-i18n="about_v1_title">Precision-First Philosophy</div>
+            <div class="about-value-desc" data-i18n="about_v1_desc">Every repair begins with a complete diagnostic. We don't guess — we verify, then act.</div>
+          </div>
+        </div>
+        <div class="about-value">
+          <div class="about-value-icon">🤝</div>
+          <div>
+            <div class="about-value-title" data-i18n="about_v2_title">Radical Transparency</div>
+            <div class="about-value-desc" data-i18n="about_v2_desc">Clear quotes before any work begins. No surprises on your invoice, ever.</div>
+          </div>
+        </div>
+        <div class="about-value">
+          <div class="about-value-icon">🏆</div>
+          <div>
+            <div class="about-value-title" data-i18n="about_v3_title">Results That Last</div>
+            <div class="about-value-desc" data-i18n="about_v3_desc">We stand behind our work. OEM-grade parts, proper technique, and real warranties.</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-stats">
+        <div class="about-stat">
+          <div class="about-stat-num">8<span>+</span></div>
+          <div class="about-stat-label" data-i18n="about_stat1">Years in Orlando</div>
+        </div>
+        <div class="about-stat">
+          <div class="about-stat-num">4K<span>+</span></div>
+          <div class="about-stat-label" data-i18n="about_stat2">Vehicles Serviced</div>
+        </div>
+        <div class="about-stat">
+          <div class="about-stat-num">98<span>%</span></div>
+          <div class="about-stat-label" data-i18n="about_stat3">5-Star Reviews</div>
+        </div>
+      </div>
+    </div>
+    <!-- Right: visual -->
+    <div class="about-visual reveal" style="transition-delay:0.15s">
+      <div class="about-tag" data-i18n="about_tag">Est. Orlando, FL</div>
+      <div class="about-img-wrap">
+        <img src="https://res.cloudinary.com/dgp7uhps3/image/upload/v1782705155/IMG_8219_cpxfpr.png" alt="Zenith Performance & Repair">
+      </div>
+      <div class="about-badge">
+        <div class="about-badge-icon">⚙️</div>
+        <div class="about-badge-text">
+          <div class="about-badge-main" data-i18n="about_badge_main">ASE Certified Technicians</div>
+          <div class="about-badge-sub" data-i18n="about_badge_sub">Factory-level diagnostics & tooling</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE ZENITH -->
+<section id="why">
+  <div class="reveal">
+    <div class="section-eyebrow" data-i18n="why_eyebrow">Why Choose Us</div>
+    <h2 class="section-title" data-i18n="why_title">THE ZENITH<br>DIFFERENCE</h2>
+    <p class="section-desc" data-i18n="why_desc">We don't just fix cars. We engineer confidence. Every vehicle that enters our facility receives the same precision-first treatment, regardless of make or model.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal" style="transition-delay:0.05s">
+      <div class="why-card-number">01</div>
+      <div class="why-card-icon">⚡</div>
+      <h3 data-i18n="why_1_title">Same Day Service</h3>
+      <p data-i18n="why_1_desc">Most repairs completed within hours. No unnecessary delays, no runaround. We respect your time as much as your vehicle.</p>
+    </div>
+    <div class="why-card reveal" style="transition-delay:0.1s">
+      <div class="why-card-number">02</div>
+      <div class="why-card-icon">🛠</div>
+      <h3 data-i18n="why_2_title">Certified Technicians</h3>
+      <p data-i18n="why_2_desc">ASE-certified master technicians with decades of combined experience across all makes and models, domestic and imported.</p>
+    </div>
+    <div class="why-card reveal" style="transition-delay:0.15s">
+      <div class="why-card-number">03</div>
+      <div class="why-card-icon">🚗</div>
+      <h3 data-i18n="why_3_title">All Makes & Models</h3>
+      <p data-i18n="why_3_desc">From Honda Civics to BMW M-series, Jeeps to Lamborghinis. Our diagnostic equipment handles every manufacturer protocol.</p>
+    </div>
+    <div class="why-card reveal" style="transition-delay:0.2s">
+      <div class="why-card-number">04</div>
+      <div class="why-card-icon">📈</div>
+      <h3 data-i18n="why_4_title">Advanced Diagnostics</h3>
+      <p data-i18n="why_4_desc">Factory-level OBD-II scanners, oscilloscopes, and AI-powered diagnostics that find issues before they become failures.</p>
+    </div>
+    <div class="why-card reveal" style="transition-delay:0.25s">
+      <div class="why-card-number">05</div>
+      <div class="why-card-icon">🏁</div>
+      <h3 data-i18n="why_5_title">Performance Specialists</h3>
+      <p data-i18n="why_5_desc">ECU tuning, suspension upgrades, forced induction setups. We make fast cars faster and reliable cars bulletproof.</p>
+    </div>
+    <div class="why-card reveal" style="transition-delay:0.3s">
+      <div class="why-card-number">06</div>
+      <div class="why-card-icon">💎</div>
+      <h3 data-i18n="why_6_title">Honest Pricing</h3>
+      <p data-i18n="why_6_desc">No hidden fees. No upselling. Transparent quotes upfront with digital approval before any work begins on your vehicle.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MAINTENANCE CALCULATOR -->
+<section class="calc-section" id="calculator">
+  <div style="text-align:center;" class="reveal">
+    <div class="section-eyebrow" style="justify-content:center;" data-i18n="calc_eyebrow">Smart Estimator</div>
+    <h2 class="section-title" style="text-align:center;" data-i18n="calc_title">SERVICE<br>CALCULATOR</h2>
+    <p class="section-desc" style="margin:0 auto;" data-i18n="calc_desc">Tell us about your vehicle and we'll generate a personalized maintenance plan with priority levels and estimated costs.</p>
+  </div>
+  <div class="calc-box reveal" style="transition-delay:0.15s">
+    <div class="calc-header">
+      <h3 data-i18n="calc_header">Vehicle Service Estimator</h3>
+      <p style="font-size:13px;color:rgba(255,255,255,0.4);margin-top:4px;font-family:var(--font-ui);" data-i18n="calc_sub">Get an instant estimate for your recommended services</p>
+    </div>
+    <div class="calc-body">
+      <div class="calc-grid">
+        <div class="calc-field">
+          <label data-i18n="calc_make">Vehicle Make</label>
+          <select class="calc-select" id="calcMake">
+            <option value="">Select make...</option>
+            <option>Toyota</option><option>Honda</option><option>Ford</option><option>BMW</option>
+            <option>Mercedes-Benz</option><option>Audi</option><option>Chevrolet</option>
+            <option>Nissan</option><option>Dodge</option><option>Jeep</option><option>Lexus</option>
+            <option>Volkswagen</option><option>Subaru</option><option>Hyundai</option><option>Kia</option>
+          </select>
+        </div>
+        <div class="calc-field">
+          <label data-i18n="calc_year">Model Year</label>
+          <select class="calc-select" id="calcYear">
+            <option value="">Select year...</option>
+            <option>2024</option><option>2023</option><option>2022</option><option>2021</option>
+            <option>2020</option><option>2019</option><option>2018</option><option>2017</option>
+            <option>2016</option><option>2015</option><option>2014</option><option>2013</option>
+            <option>2012</option><option>2011</option><option>2010</option><option>Older</option>
+          </select>
+        </div>
+        <div class="calc-field">
+          <label data-i18n="calc_mileage">Current Mileage</label>
+          <select class="calc-select" id="calcMileage">
+            <option value="">Select mileage...</option>
+            <option value="low">Under 30,000 mi</option>
+            <option value="mid">30,000 – 75,000 mi</option>
+            <option value="high">75,000 – 120,000 mi</option>
+            <option value="very_high">Over 120,000 mi</option>
+          </select>
+        </div>
+        <div class="calc-field">
+          <label data-i18n="calc_last_service">Last Service</label>
+          <select class="calc-select" id="calcLastService">
+            <option value="">Select...</option>
+            <option value="recent">Within 6 months</option>
+            <option value="year">6–12 months ago</option>
+            <option value="long">1–2 years ago</option>
+            <option value="unknown">Unknown / Never</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-primary" style="padding:15px 36px;" onclick="calculateServices()" data-i18n="calc_btn">Generate My Service Plan</button>
+      <div class="calc-result" id="calcResult">
+        <div style="font-size:13px;color:var(--violet-light);font-family:var(--font-ui);margin-bottom:16px;letter-spacing:0.05em;" id="calcCarLabel"></div>
+        <div class="calc-services-list" id="calcServicesList"></div>
+        <div class="calc-total">
+          <div>
+            <div class="calc-total-label" data-i18n="calc_total">Estimated Total</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.2);font-family:var(--font-ui);" data-i18n="calc_disclaimer">Prices may vary. Book for exact quote.</div>
+          </div>
+          <div class="calc-total-price" id="calcTotal"><span>$</span><span id="calcTotalNum">0</span></div>
+        </div>
+        <button class="btn-primary" style="width:100%;margin-top:20px;" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" data-i18n="calc_book">Book These Services</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="services-bg">
+  <div class="reveal">
+    <div class="section-eyebrow" data-i18n="svc_eyebrow">Our Services</div>
+    <h2 class="section-title" data-i18n="svc_title">PRECISION<br>EVERY TIME</h2>
+    <p class="section-desc" data-i18n="svc_desc">From routine maintenance to full performance builds, every service at Zenith is executed with the same obsession for detail.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal" style="transition-delay:0.05s" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+      <div class="service-img-wrap"><div class="service-emoji">🔧</div><div class="service-img-overlay"></div></div>
+      <div class="service-body">
+        <div class="service-title" data-i18n="svc_1_title">Engine Repair</div>
+        <div class="service-desc" data-i18n="svc_1_desc">Complete engine diagnostics, rebuilds, and replacements for all vehicle types.</div>
+        <div class="service-cta" data-i18n="svc_cta">Book Now</div>
+      </div>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.08s" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+      <div class="service-img-wrap"><div class="service-emoji">🛢</div><div class="service-img-overlay"></div></div>
+      <div class="service-body">
+        <div class="service-title" data-i18n="svc_2_title">Oil Change</div>
+        <div class="service-desc" data-i18n="svc_2_desc">Full synthetic, conventional, or high-mileage. In and out in 20 minutes.</div>
+        <div class="service-cta" data-i18n="svc_cta">Book Now</div>
+      </div>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.11s" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+      <div class="service-img-wrap"><div class="service-emoji">🏎</div><div class="service-img-overlay"></div></div>
+      <div class="service-body">
+        <div class="service-title" data-i18n="svc_3_title">Brake Service</div>
+        <div class="service-desc" data-i18n="svc_3_desc">Pads, rotors, calipers, and brake fluid flushes. Stop shorter, stop safer.</div>
+        <div class="service-cta" data-i18n="svc_cta">Book Now</div>
+      </div>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.14s" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+      <div class="service-img-wrap"><div class="service-emoji">⚙️</div><div class="service-img-overlay"></div></div>
+      <div class="service-body">
+        <div class="service-title" data-i18n="svc_4_title">Transmission</div>
+        <div class="service-desc" data-i18n="svc_4_desc">Automatic, manual, CVT. Service, rebuild, or replacement with warranty.</div>
+        <div class="service-cta" data-i18n="svc_cta">Book Now</div>
+      </div>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.17s" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+      <div class="service-img-wrap"><div class="service-emoji">⚡</div><div class="service-img-overlay"></div></div>
+      <div class="service-body">
+        <div class="service-title" data-i18n="svc_5_title">Electrical</div>
+        <div class="service-desc" data-i18n="svc_5_desc">Wiring, alternators, starters, ECU programming, and complex electrical diagnostics.</div>
+        <div class="service-cta" data-i18n="svc_cta">Book Now</div>
+      </div>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.2s" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+      <div class="service-img-wrap"><div class="service-emoji">🔬</div><div class="service-img-overlay"></div></div>
+      <div class="service-body">
+        <div class="service-title" data-i18n="svc_6_title">Diagnostics</div>
+        <div class="service-desc" data-i18n="svc_6_desc">Factory-level scan tools and AI-powered diagnostics to identify any issue fast.</div>
+        <div class="service-cta" data-i18n="svc_cta">Book Now</div>
+      </div>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.23s" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+      <div class="service-img-wrap"><div class="service-emoji">🔩</div><div class="service-img-overlay"></div></div>
+      <div class="service-body">
+        <div class="service-title" data-i18n="svc_7_title">Suspension</div>
+        <div class="service-desc" data-i18n="svc_7_desc">Shocks, struts, coilovers, alignment, and full suspension geometry correction.</div>
+        <div class="service-cta" data-i18n="svc_cta">Book Now</div>
+      </div>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.26s" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+      <div class="service-img-wrap"><div class="service-emoji">🚀</div><div class="service-img-overlay"></div></div>
+      <div class="service-body">
+        <div class="service-title" data-i18n="svc_8_title">Performance Upgrades</div>
+        <div class="service-desc" data-i18n="svc_8_desc">Intakes, exhausts, turbos, ECU tuning. Unleash what your car was built for.</div>
+        <div class="service-cta" data-i18n="svc_cta">Book Now</div>
+      </div>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.29s" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+      <div class="service-img-wrap"><div class="service-emoji">🔄</div><div class="service-img-overlay"></div></div>
+      <div class="service-body">
+        <div class="service-title" data-i18n="svc_9_title">Tune Ups</div>
+        <div class="service-desc" data-i18n="svc_9_desc">Spark plugs, filters, belts, and fuel system service to keep your engine sharp.</div>
+        <div class="service-cta" data-i18n="svc_cta">Book Now</div>
+      </div>
+    </div>
+    <div class="service-card reveal" style="transition-delay:0.32s" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+      <div class="service-img-wrap"><div class="service-emoji">🔗</div><div class="service-img-overlay"></div></div>
+      <div class="service-body">
+        <div class="service-title" data-i18n="svc_10_title">CV Axles</div>
+        <div class="service-desc" data-i18n="svc_10_desc">CV joints, axle shafts, and driveshaft repairs for front and all-wheel drive vehicles.</div>
+        <div class="service-cta" data-i18n="svc_cta">Book Now</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<div class="brands-section">
+  <div class="brands-section-inner">
+    <div class="brands-fade-l"></div>
+    <div class="brands-fade-r"></div>
+    <div class="brands-track" id="brandsTrack">
+      <span class="brand-item">Toyota</span><span class="brand-item">Honda</span><span class="brand-item">BMW</span><span class="brand-item">Mercedes</span><span class="brand-item">Audi</span><span class="brand-item">Ford</span><span class="brand-item">Chevrolet</span><span class="brand-item">Lexus</span><span class="brand-item">Volkswagen</span><span class="brand-item">Jeep</span><span class="brand-item">Porsche</span><span class="brand-item">Dodge</span><span class="brand-item">Nissan</span><span class="brand-item">Subaru</span><span class="brand-item">Hyundai</span><span class="brand-item">Kia</span>
+      <span class="brand-item">Toyota</span><span class="brand-item">Honda</span><span class="brand-item">BMW</span><span class="brand-item">Mercedes</span><span class="brand-item">Audi</span><span class="brand-item">Ford</span><span class="brand-item">Chevrolet</span><span class="brand-item">Lexus</span><span class="brand-item">Volkswagen</span><span class="brand-item">Jeep</span><span class="brand-item">Porsche</span><span class="brand-item">Dodge</span><span class="brand-item">Nissan</span><span class="brand-item">Subaru</span><span class="brand-item">Hyundai</span><span class="brand-item">Kia</span>
+    </div>
+  </div>
+</div>
+
+<!-- AI ASSISTANT -->
+<section class="ai-section" id="ai-assistant">
+  <div class="ai-layout">
+    <div class="ai-info reveal">
+      <div class="section-eyebrow" data-i18n="ai_eyebrow">AI Powered</div>
+      <h2 data-i18n="ai_title">ZENITH<br>SERVICE<br>ADVISOR</h2>
+      <p data-i18n="ai_desc">Not a chatbot. A digital Service Advisor that understands your vehicle, identifies the issue, and prepares a professional summary for our technicians — before you even walk through the door.</p>
+      <div class="ai-features">
+        <div class="ai-feat"><div class="ai-feat-icon">🎯</div><span data-i18n="ai_feat_1">Dynamic symptom analysis</span></div>
+        <div class="ai-feat"><div class="ai-feat-icon">🔍</div><span data-i18n="ai_feat_2">Probable cause diagnosis</span></div>
+        <div class="ai-feat"><div class="ai-feat-icon">💰</div><span data-i18n="ai_feat_3">Real cost estimates</span></div>
+        <div class="ai-feat"><div class="ai-feat-icon">⏱</div><span data-i18n="ai_feat_4">Repair time assessment</span></div>
+        <div class="ai-feat"><div class="ai-feat-icon">📋</div><span data-i18n="ai_feat_5">WhatsApp-ready summary</span></div>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:0.15s">
+      <!-- Preview card -->
+      <div style="background:#0c0c0c;border:1px solid rgba(123,47,255,0.2);border-radius:24px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.6),inset 0 1px 0 rgba(255,255,255,0.05);">
+        <div style="padding:18px 22px;background:linear-gradient(135deg,rgba(123,47,255,0.12),rgba(123,47,255,0.04));border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:12px;">
+          <div style="width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#7B2FFF,#5B0FDF);display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 0 16px rgba(123,47,255,0.4);">🔧</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#fff;font-family:var(--font-ui);">Zenith Service Advisor</div>
+            <div style="font-size:11px;color:var(--violet-light);font-family:var(--font-ui);display:flex;align-items:center;gap:4px;margin-top:1px;"><span style="width:5px;height:5px;border-radius:50%;background:#4ade80;display:inline-block;"></span>Online — Ready to assist</div>
+          </div>
+        </div>
+        <div style="padding:20px 22px;display:flex;flex-direction:column;gap:10px;">
+          <div style="align-self:flex-start;max-width:85%;">
+            <div style="padding:11px 15px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.06);border-radius:14px 14px 14px 4px;font-size:13px;color:rgba(255,255,255,0.88);line-height:1.6;font-family:var(--font-ui);">👋 Welcome to Zenith Performance & Repair. I'm your Zenith Service Advisor. Tell me what's happening with your vehicle.</div>
+          </div>
+          <div style="align-self:flex-end;max-width:85%;">
+            <div style="padding:11px 15px;background:var(--violet);border-radius:14px 14px 4px 14px;font-size:13px;color:#fff;line-height:1.6;font-family:var(--font-ui);box-shadow:0 4px 12px rgba(123,47,255,0.35);">My brakes make a grinding noise when I stop at low speed. Started 3 days ago.</div>
+          </div>
+          <div style="align-self:flex-start;display:flex;align-items:center;gap:6px;padding:10px 14px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.06);border-radius:14px 14px 14px 4px;">
+            <div style="width:5px;height:5px;border-radius:50%;background:var(--violet-light);animation:zsa-bounce 1.2s ease-in-out infinite;"></div>
+            <div style="width:5px;height:5px;border-radius:50%;background:var(--violet-light);animation:zsa-bounce 1.2s ease-in-out 0.15s infinite;"></div>
+            <div style="width:5px;height:5px;border-radius:50%;background:var(--violet-light);animation:zsa-bounce 1.2s ease-in-out 0.3s infinite;"></div>
+            <span style="font-size:10px;color:rgba(255,255,255,0.3);font-family:var(--font-ui);margin-left:4px;">Analyzing symptoms...</span>
+          </div>
+        </div>
+        <div style="padding:14px 22px;border-top:1px solid rgba(255,255,255,0.05);background:rgba(0,0,0,0.2);display:flex;gap:8px;align-items:center;">
+          <div style="flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:10px 14px;font-size:12px;color:rgba(255,255,255,0.2);font-family:var(--font-ui);">Describe your vehicle's issue…</div>
+          <button onclick="zsaOpen()" style="padding:10px 18px;background:var(--violet);border:none;border-radius:10px;color:#fff;font-size:12px;font-weight:500;cursor:pointer;font-family:var(--font-ui);box-shadow:0 0 16px rgba(123,47,255,0.4);white-space:nowrap;transition:all 0.2s;" data-i18n="ai_open_btn">Open Advisor →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIN DECODER -->
+<section class="vin-section" id="vin">
+  <div style="text-align:center;" class="reveal">
+    <div class="section-eyebrow" style="justify-content:center;" data-i18n="vin_eyebrow">Vehicle Lookup</div>
+    <h2 class="section-title" style="text-align:center;" data-i18n="vin_title">SCAN YOUR VIN</h2>
+    <p class="section-desc" style="margin:0 auto;" data-i18n="vin_desc">Enter your Vehicle Identification Number and we'll identify your exact car and personalize your service recommendations.</p>
+  </div>
+  <div class="vin-box reveal" style="transition-delay:0.15s">
+    <div class="vin-input-row">
+      <input class="vin-input" id="vinInput" type="text" maxlength="17" placeholder="Enter 17-character VIN..." data-i18n-placeholder="vin_placeholder">
+      <button class="btn-vin" onclick="decodeVin()" data-i18n="vin_btn">Decode VIN</button>
+    </div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.2);font-family:var(--font-ui);" data-i18n="vin_hint">Find your VIN on the dashboard driver's side, door jamb sticker, or registration document</div>
+    <div class="vin-result" id="vinResult">
+      <div class="vin-result-car" id="vinCarName"></div>
+      <div id="vinWelcome" style="font-size:14px;color:var(--violet-light);font-family:var(--font-ui);"></div>
+      <div class="vin-result-details" id="vinDetails"></div>
+      <button class="btn-primary" style="margin-top:24px;width:100%;" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" data-i18n="vin_book">Book Service for This Vehicle</button>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section class="ba-section" id="gallery">
+  <div class="reveal">
+    <div class="section-eyebrow" data-i18n="ba_eyebrow">Transformations</div>
+    <h2 class="section-title" data-i18n="ba_title">BEFORE &<br>AFTER</h2>
+    <p class="section-desc" data-i18n="ba_desc">Drag the slider to see the Zenith difference. Real results from real vehicles serviced in our shop.</p>
+  </div>
+  <div class="ba-layout">
+    <div class="ba-card reveal">
+      <div class="ba-slider-wrap" id="baSlider1">
+        <div class="ba-before" style="background-image:url('https://res.cloudinary.com/dgp7uhps3/image/upload/v1782705857/IMG_8239_pvfdwi.jpg');background-size:contain;background-position:center;background-repeat:no-repeat;"></div>
+        <div class="ba-after" id="baAfter1" style="background-image:url('https://res.cloudinary.com/dgp7uhps3/image/upload/v1782705858/IMG_8238_rewyor.jpg');background-size:contain;background-position:center;background-repeat:no-repeat;"></div>
+        <div class="ba-divider" id="baDivider1"><div class="ba-divider-handle">⇔</div></div>
+        <span class="ba-label before" data-i18n="ba_before">Before</span>
+        <span class="ba-label after" data-i18n="ba_after">After</span>
+      </div>
+      <div class="ba-info">
+        <h3 data-i18n="ba_1_title">Brake Rotor & Pad Replacement</h3>
+        <p data-i18n="ba_1_desc">Complete front brake job on a Chevrolet Corvette — new rotors and pads for smoother, more responsive stopping power.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="testimonials">
+  <div class="reveal">
+    <div class="section-eyebrow" data-i18n="test_eyebrow">Client Reviews</div>
+    <h2 class="section-title" data-i18n="test_title">WHAT THEY<br>SAY ABOUT US</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text" data-i18n="test_1_text">"Zenith is the only shop I trust with my M4. They diagnosed an issue three dealers missed, fixed it the same day, and charged half what I expected. The communication was impeccable throughout."</div>
+      <div class="testimonial-footer">
+        <div class="testimonial-avatar">MR</div>
+        <div>
+          <div class="testimonial-name">Marcus R.</div>
+          <div class="testimonial-car">2022 BMW M4 Competition</div>
+          <div class="testimonial-source">⭐ Google Review</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal" style="transition-delay:0.1s">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text" data-i18n="test_2_text">"Brought my Porsche for a full suspension overhaul. The team at Zenith treated it like it was their own car. The ride quality now is unbelievable. Booked three more services before I even left."</div>
+      <div class="testimonial-footer">
+        <div class="testimonial-avatar">SL</div>
+        <div>
+          <div class="testimonial-name">Sofia L.</div>
+          <div class="testimonial-car">2021 Porsche 911 Carrera S</div>
+          <div class="testimonial-source">⭐ Google Review</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal" style="transition-delay:0.2s">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text" data-i18n="test_3_text">"Used the AI assistant on the website before calling. It nailed the exact issue with my Toyota. Came in, it was confirmed in 10 minutes, fixed in 2 hours. This is the future of auto service."</div>
+      <div class="testimonial-footer">
+        <div class="testimonial-avatar">JM</div>
+        <div>
+          <div class="testimonial-name">James M.</div>
+          <div class="testimonial-car">2019 Toyota Camry XSE</div>
+          <div class="testimonial-source">⭐ Google Review</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal" style="transition-delay:0.05s">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text" data-i18n="test_4_text">"Como hispano en Orlando, encontrar un taller que sea honesto y de alta calidad es difícil. Zenith supera cualquier expectativa. El equipo habla español y el trabajo es de primer nivel."</div>
+      <div class="testimonial-footer">
+        <div class="testimonial-avatar">CA</div>
+        <div>
+          <div class="testimonial-name">Carlos A.</div>
+          <div class="testimonial-car">2020 Chevrolet Tahoe RST</div>
+          <div class="testimonial-source">⭐ Google Review</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal" style="transition-delay:0.15s">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text" data-i18n="test_5_text">"Performance tune on my Mustang GT500 was done to absolute perfection. These guys understand power. 35hp gain, no drivability issues, totally street-legal. Won't go anywhere else."</div>
+      <div class="testimonial-footer">
+        <div class="testimonial-avatar">DK</div>
+        <div>
+          <div class="testimonial-name">Derek K.</div>
+          <div class="testimonial-car">2022 Ford Shelby GT500</div>
+          <div class="testimonial-source">⭐ Google Review</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal" style="transition-delay:0.25s">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text" data-i18n="test_6_text">"After a major accident I didn't think my Mercedes would be the same. Zenith handled the full mechanical restoration with zero compromise. Four months later and it drives like the day I bought it."</div>
+      <div class="testimonial-footer">
+        <div class="testimonial-avatar">AT</div>
+        <div>
+          <div class="testimonial-name">Amanda T.</div>
+          <div class="testimonial-car">2023 Mercedes-Benz GLE 53</div>
+          <div class="testimonial-source">⭐ Google Review</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location-section" id="location">
+  <div class="location-layout">
+    <div class="reveal">
+      <div class="section-eyebrow" data-i18n="loc_eyebrow">Find Us</div>
+      <h2 class="section-title" data-i18n="loc_title">VISIT<br>ZENITH</h2>
+      <div class="location-detail">
+        <div class="location-detail-icon">📍</div>
+        <div class="location-detail-text">
+          <strong data-i18n="loc_addr_label">Address</strong>
+          350 Kassik Cir<br>Orlando, FL 32824<br>United States
+        </div>
+      </div>
+      <div class="location-detail">
+        <div class="location-detail-icon">🕐</div>
+        <div class="location-detail-text">
+          <strong data-i18n="loc_hours_label">Hours</strong>
+          <span data-i18n="loc_hours">Mon–Fri 7:30am–6:00pm<br>Saturday 8:00am–4:00pm<br>Sunday Closed</span>
+        </div>
+      </div>
+      <div class="location-detail">
+        <div class="location-detail-icon">📞</div>
+        <div class="location-detail-text">
+          <strong data-i18n="loc_phone_label">Phone</strong>
+          <a href="tel:+13213684502" style="color:var(--violet-light);text-decoration:none;">(321) 368-4502</a>
+        </div>
+      </div>
+      <a href="https://maps.google.com/?q=350+Kassik+Cir,+Orlando,+FL+32824" target="_blank" class="btn-navigate" style="margin-top:8px;">
+        <span>🗺</span> <span data-i18n="loc_btn">Navigate Now</span>
+      </a>
+    </div>
+    <div class="map-embed reveal" style="transition-delay:0.15s">
+      <iframe
+        src="https://www.google.com/maps?q=350+Kassik+Cir,+Orlando,+FL+32824&output=embed"
+        width="100%" height="100%" style="border:0;"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Zenith Performance & Repair location">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-layout">
+    <div class="contact-info reveal">
+      <div class="section-eyebrow" data-i18n="contact_eyebrow">Get In Touch</div>
+      <h3 data-i18n="contact_title">BOOK YOUR<br>APPOINTMENT</h3>
+      <p data-i18n="contact_desc">Ready to experience the Zenith difference? Fill out the form and our team will confirm your appointment within 5 minutes during business hours.</p>
+      <a href="https://wa.me/13213684502?text=Hi%20Zenith!%20I'd%20like%20to%20book%20an%20appointment." class="btn-whatsapp" target="_blank">
+        <span>💬</span> <span data-i18n="contact_wa">Chat on WhatsApp</span>
+      </a>
+      <div style="margin-top:32px;padding:24px;background:rgba(123,47,255,0.06);border:1px solid rgba(123,47,255,0.15);border-radius:14px;">
+        <div style="font-size:13px;font-weight:500;margin-bottom:8px;" data-i18n="contact_promise_title">Our Promise</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;font-family:var(--font-ui);" data-i18n="contact_promise">We respond to every inquiry within 5 minutes during business hours. No bots, no runaround — just a real technician ready to help you.</div>
+      </div>
+    </div>
+    <div class="contact-form-box reveal" style="transition-delay:0.15s">
+      <div class="form-grid">
+        <div class="form-field">
+          <label data-i18n="form_name">Full Name</label>
+          <input class="form-input" id="fName" type="text" placeholder="John Smith" data-i18n-placeholder="form_name_ph">
+          <div class="error-msg" id="fNameErr" data-i18n="form_name_err">Please enter your name</div>
+        </div>
+        <div class="form-field">
+          <label data-i18n="form_phone">Phone Number</label>
+          <input class="form-input" id="fPhone" type="tel" placeholder="(407) 000-0000" data-i18n-placeholder="form_phone_ph">
+          <div class="error-msg" id="fPhoneErr" data-i18n="form_phone_err">Please enter a valid phone number</div>
+        </div>
+      </div>
+      <div class="form-field">
+        <label data-i18n="form_vehicle">Vehicle (Year, Make, Model)</label>
+        <input class="form-input" id="fVehicle" type="text" placeholder="2021 BMW M4" data-i18n-placeholder="form_vehicle_ph">
+        <div class="error-msg" id="fVehicleErr" data-i18n="form_vehicle_err">Please describe your vehicle</div>
+      </div>
+      <div class="form-field">
+        <label data-i18n="form_service">Service Needed</label>
+        <select class="form-input" id="fService">
+          <option value="" data-i18n="form_service_ph">Select a service...</option>
+          <option data-i18n="svc_1_title">Engine Repair</option>
+          <option data-i18n="svc_2_title">Oil Change</option>
+          <option data-i18n="svc_3_title">Brake Service</option>
+          <option data-i18n="svc_4_title">Transmission</option>
+          <option data-i18n="svc_5_title">Electrical</option>
+          <option data-i18n="svc_6_title">Diagnostics</option>
+          <option data-i18n="svc_7_title">Suspension</option>
+          <option data-i18n="svc_8_title">Performance Upgrades</option>
+          <option data-i18n="svc_9_title">Tune Ups</option>
+          <option data-i18n="svc_10_title">CV Axles</option>
+          <option data-i18n="form_service_other">Other</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label data-i18n="form_message">Describe the Issue</label>
+        <textarea class="form-textarea" id="fMessage" placeholder="Tell us what's happening with your car..." data-i18n-placeholder="form_message_ph"></textarea>
+      </div>
+      <button class="btn-submit" onclick="submitForm()" data-i18n="form_submit">Book My Appointment →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo" style="text-decoration:none;display:flex;align-items:center;gap:10px;">
+        <img src="https://res.cloudinary.com/dgp7uhps3/image/upload/v1782696990/IMG_8216_npk7ow_tel8y4.png" alt="Zenith Performance & Repair" class="nav-logo-icon">
+        <span class="nav-logo-text">Zenith <span>Performance</span></span>
+      </a>
+      <p data-i18n="footer_desc">Orlando's premier automotive performance center. Where precision meets passion, every single day.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_services">Services</h4>
+      <a href="#services" data-i18n="svc_1_title">Engine Repair</a>
+      <a href="#services" data-i18n="svc_3_title">Brake Service</a>
+      <a href="#services" data-i18n="svc_8_title">Performance Upgrades</a>
+      <a href="#services" data-i18n="svc_6_title">Diagnostics</a>
+      <a href="#services" data-i18n="svc_4_title">Transmission</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_company">Company</h4>
+      <a href="#why" data-i18n="nav_why">Why Zenith</a>
+      <a href="#testimonials" data-i18n="nav_testimonials">Reviews</a>
+      <a href="#ai-assistant" data-i18n="nav_ai">AI Assistant</a>
+      <a href="#contact" data-i18n="footer_careers">Careers</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer_contact">Contact</h4>
+      <a href="tel:+13213684502">(321) 368-4502</a>
+      <a href="mailto:zenithmxco@gmail.com">zenithmxco@gmail.com</a>
+      <a href="#location">350 Kassik Cir, Orlando FL 32824</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy" data-i18n="footer_copy">© 2025 Zenith Performance & Repair. All rights reserved.</div>
+    <div class="footer-socials">
+      <a href="https://instagram.com/zenithmxcodetailing" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">📷</a>
+      <a href="#" class="social-btn" aria-label="Facebook">📘</a>
+      <a href="#" class="social-btn" aria-label="TikTok">🎵</a>
+      <a href="https://wa.me/13213684502" class="social-btn" aria-label="WhatsApp">💬</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// I18N SYSTEM
+// ═══════════════════════════════════════════════════════
+const translations = {
+  en: {
+    nav_why: "Why Zenith", nav_services: "Services", nav_ai: "AI Assistant",
+    nav_testimonials: "Reviews", nav_contact: "Contact", nav_book: "Book Appointment",
+    hero_eyebrow: "Orlando's Premier Auto Workshop",
+    hero_title_1: "YOUR CAR", hero_title_2: "DESERVES", hero_title_3: "BETTER.",
+    hero_sub_1: "Performance", hero_sub_2: "Maintenance", hero_sub_3: "Diagnostics", hero_sub_4: "Repair",
+    hero_cta_primary: "Book Appointment", hero_cta_secondary: "Free Diagnostic",
+    hero_scroll: "Scroll",
+    stat_1: "Vehicles Repaired", stat_2: "Client Satisfaction", stat_3: "Years of Experience", stat_4: "Response Time",
+    about_eyebrow: "Who We Are", about_headline: "BUILT ON\nPRECISION.\nDRIVEN BY\nPASSION.",
+    about_body: "Zenith Performance & Repair was founded with a single conviction: that every vehicle deserves dealership-level care — without the dealership price tag. Based in Orlando, we've built a reputation among enthusiasts and everyday drivers alike for honest diagnostics, flawless execution, and results that speak for themselves.",
+    about_v1_title: "Precision-First Philosophy", about_v1_desc: "Every repair begins with a complete diagnostic. We don't guess — we verify, then act.",
+    about_v2_title: "Radical Transparency", about_v2_desc: "Clear quotes before any work begins. No surprises on your invoice, ever.",
+    about_v3_title: "Results That Last", about_v3_desc: "We stand behind our work. OEM-grade parts, proper technique, and real warranties.",
+    about_stat1: "Years in Orlando", about_stat2: "Vehicles Serviced", about_stat3: "5-Star Reviews",
+    about_tag: "Est. Orlando, FL", about_badge_main: "ASE Certified Technicians", about_badge_sub: "Factory-level diagnostics & tooling",
+    why_eyebrow: "Why Choose Us",
+    why_desc: "We don't just fix cars. We engineer confidence. Every vehicle that enters our facility receives the same precision-first treatment.",
+    why_1_title: "Same Day Service", why_1_desc: "Most repairs completed within hours. No unnecessary delays, no runaround. We respect your time as much as your vehicle.",
+    why_2_title: "Certified Technicians", why_2_desc: "ASE-certified master technicians with decades of combined experience across all makes and models.",
+    why_3_title: "All Makes & Models", why_3_desc: "From Honda Civics to BMW M-series, Jeeps to Lamborghinis. Our diagnostic equipment handles every manufacturer protocol.",
+    why_4_title: "Advanced Diagnostics", why_4_desc: "Factory-level OBD-II scanners, oscilloscopes, and AI-powered diagnostics that find issues before they become failures.",
+    why_5_title: "Performance Specialists", why_5_desc: "ECU tuning, suspension upgrades, forced induction setups. We make fast cars faster and reliable cars bulletproof.",
+    why_6_title: "Honest Pricing", why_6_desc: "No hidden fees. No upselling. Transparent quotes upfront with digital approval before any work begins.",
+    svc_eyebrow: "Our Services", svc_title: "PRECISION\nEVERY TIME",
+    svc_desc: "From routine maintenance to full performance builds, every service at Zenith is executed with the same obsession for detail.",
+    svc_1_title: "Engine Repair", svc_1_desc: "Complete engine diagnostics, rebuilds, and replacements for all vehicle types.",
+    svc_2_title: "Oil Change", svc_2_desc: "Full synthetic, conventional, or high-mileage. In and out in 20 minutes.",
+    svc_3_title: "Brake Service", svc_3_desc: "Pads, rotors, calipers, and brake fluid flushes. Stop shorter, stop safer.",
+    svc_4_title: "Transmission", svc_4_desc: "Automatic, manual, CVT. Service, rebuild, or replacement with warranty.",
+    svc_5_title: "Electrical", svc_5_desc: "Wiring, alternators, starters, ECU programming, and complex electrical diagnostics.",
+    svc_6_title: "Diagnostics", svc_6_desc: "Factory-level scan tools and AI-powered diagnostics to identify any issue fast.",
+    svc_7_title: "Suspension", svc_7_desc: "Shocks, struts, coilovers, alignment, and full suspension geometry correction.",
+    svc_8_title: "Performance Upgrades", svc_8_desc: "Intakes, exhausts, turbos, ECU tuning. Unleash what your car was built for.",
+    svc_9_title: "Tune Ups", svc_9_desc: "Spark plugs, filters, belts, and fuel system service to keep your engine sharp.",
+    svc_10_title: "CV Axles", svc_10_desc: "CV joints, axle shafts, and driveshaft repairs for front and all-wheel drive vehicles.",
+    svc_cta: "Book Now",
+    ai_eyebrow: "AI Powered", ai_title: "AI CAR\nASSISTANT",
+    ai_desc: "Describe what's happening with your car in plain language. Our AI mechanic analyzes your symptoms, identifies possible causes, and gives you an honest cost estimate — in seconds.",
+    ai_feat_1: "Instant urgency assessment", ai_feat_2: "Probable cause analysis",
+    ai_feat_3: "Estimated repair cost range", ai_feat_4: "Approximate repair time",
+    ai_feat_5: "Personalized recommendation",
+    chat_online: "Online — Ready to help",
+    chat_welcome: "👋 Hello! I'm your AI mechanic. Describe what's happening with your car and I'll help identify the issue, estimate costs, and recommend the right service.",
+    chat_placeholder: "Describe your car's issue...",
+    qr_1: "Strange noise", qr_2: "Check engine light", qr_3: "Brake vibration", qr_4: "Engine shaking",
+    vin_eyebrow: "Vehicle Lookup", vin_title: "SCAN YOUR VIN",
+    vin_desc: "Enter your Vehicle Identification Number and we'll identify your exact car and personalize your service recommendations.",
+    vin_placeholder: "Enter 17-character VIN...", vin_btn: "Decode VIN",
+    vin_hint: "Find your VIN on the dashboard driver's side, door jamb sticker, or registration document",
+    vin_book: "Book Service for This Vehicle",
+    ba_eyebrow: "Transformations", ba_title: "BEFORE &\nAFTER",
+    ba_desc: "Drag the slider to see the Zenith difference. Real results from real vehicles serviced in our shop.",
+    ba_before: "Before", ba_after: "After",
+    ba_1_title: "Brake Rotor & Pad Replacement", ba_1_desc: "Complete front brake job on a Chevrolet Corvette — new rotors and pads for smoother, more responsive stopping power.",
+    ba_2_title: "Engine Bay Detail", ba_2_desc: "Full engine bay degreasing and detailing. Easier maintenance, better heat dissipation, mint condition.",
+    calc_eyebrow: "Smart Estimator", calc_title: "SERVICE\nCALCULATOR",
+    calc_desc: "Tell us about your vehicle and we'll generate a personalized maintenance plan with priority levels and estimated costs.",
+    calc_header: "Vehicle Service Estimator", calc_sub: "Get an instant estimate for your recommended services",
+    calc_make: "Vehicle Make", calc_year: "Model Year", calc_mileage: "Current Mileage", calc_last_service: "Last Service",
+    calc_btn: "Generate My Service Plan", calc_total: "Estimated Total",
+    calc_disclaimer: "Prices may vary. Book for exact quote.",
+    calc_book: "Book These Services",
+    test_eyebrow: "Client Reviews", test_title: "WHAT THEY\nSAY ABOUT US",
+    test_1_text: '"Zenith is the only shop I trust with my M4. They diagnosed an issue three dealers missed, fixed it the same day, and charged half what I expected."',
+    test_2_text: '"Brought my Porsche for a full suspension overhaul. The team at Zenith treated it like it was their own car. The ride quality now is unbelievable."',
+    test_3_text: '"Used the AI assistant on the website before calling. It nailed the exact issue with my Toyota. Came in, fixed in 2 hours. This is the future of auto service."',
+    test_4_text: '"Finding an honest, high-quality shop in Orlando is hard. Zenith exceeds every expectation. The team is bilingual and the work is world-class."',
+    test_5_text: '"Performance tune on my Mustang GT500 was done to absolute perfection. 35hp gain, no drivability issues, totally street-legal. Won\'t go anywhere else."',
+    test_6_text: '"After a major accident I didn\'t think my Mercedes would be the same. Zenith handled the full restoration with zero compromise."',
+    loc_eyebrow: "Find Us", loc_title: "VISIT\nZENITH",
+    loc_addr_label: "Address", loc_hours_label: "Hours",
+    loc_hours: "Mon–Fri 7:30am–6:00pm<br>Saturday 8:00am–4:00pm<br>Sunday Closed",
+    loc_phone_label: "Phone", loc_btn: "Navigate Now",
+    contact_eyebrow: "Get In Touch", contact_title: "BOOK YOUR\nAPPOINTMENT",
+    contact_desc: "Ready to experience the Zenith difference? Fill out the form and our team will confirm your appointment within 5 minutes during business hours.",
+    contact_wa: "Chat on WhatsApp",
+    contact_promise_title: "Our Promise",
+    contact_promise: "We respond to every inquiry within 5 minutes during business hours. No bots, no runaround — just a real technician ready to help you.",
+    form_name: "Full Name", form_name_ph: "John Smith", form_name_err: "Please enter your name",
+    form_phone: "Phone Number", form_phone_ph: "(407) 000-0000", form_phone_err: "Please enter a valid phone number",
+    form_vehicle: "Vehicle (Year, Make, Model)", form_vehicle_ph: "2021 BMW M4", form_vehicle_err: "Please describe your vehicle",
+    form_service: "Service Needed", form_service_ph: "Select a service...", form_service_other: "Other",
+    form_message: "Describe the Issue", form_message_ph: "Tell us what's happening with your car...",
+    form_submit: "Book My Appointment →",
+    footer_desc: "Orlando's premier automotive performance center. Where precision meets passion, every single day.",
+    footer_services: "Services", footer_company: "Company", footer_contact: "Contact",
+    footer_careers: "Careers", footer_copy: "© 2025 Zenith Performance & Repair. All rights reserved.",
+    toast_sent: "✅ Appointment request sent! We'll confirm within 5 minutes.",
+    toast_error: "⚠️ Please fill all required fields.",
+  },
+  es: {
+    nav_why: "Por qué Zenith", nav_services: "Servicios", nav_ai: "Asistente IA",
+    nav_testimonials: "Reseñas", nav_contact: "Contacto", nav_book: "Reservar Turno",
+    hero_eyebrow: "El Taller Premium de Orlando",
+    hero_title_1: "TU AUTO", hero_title_2: "MERECE", hero_title_3: "LO MEJOR.",
+    hero_sub_1: "Rendimiento", hero_sub_2: "Mantenimiento", hero_sub_3: "Diagnóstico", hero_sub_4: "Reparación",
+    hero_cta_primary: "Reservar Turno", hero_cta_secondary: "Diagnóstico Gratis",
+    hero_scroll: "Deslizar",
+    stat_1: "Vehículos Reparados", stat_2: "Clientes Satisfechos", stat_3: "Años de Experiencia", stat_4: "Tiempo de Respuesta",
+    about_eyebrow: "Quiénes Somos", about_headline: "CONSTRUIDOS\nCON\nPRECISIÓN.\nIMPULSADOS\nPOR PASIÓN.",
+    about_body: "Zenith Performance & Repair nació con una convicción: que cada vehículo merece atención de nivel concesionaria — sin el precio de concesionaria. Con base en Orlando, construimos una reputación entre entusiastas y conductores cotidianos gracias a diagnósticos honestos, ejecución impecable y resultados que hablan por sí solos.",
+    about_v1_title: "Filosofía de Precisión", about_v1_desc: "Toda reparación empieza con un diagnóstico completo. No adivinamos — verificamos y luego actuamos.",
+    about_v2_title: "Transparencia Total", about_v2_desc: "Presupuesto claro antes de comenzar cualquier trabajo. Sin sorpresas en tu factura, nunca.",
+    about_v3_title: "Resultados Duraderos", about_v3_desc: "Respaldamos nuestro trabajo. Piezas de calidad OEM, técnica correcta y garantías reales.",
+    about_stat1: "Años en Orlando", about_stat2: "Vehículos Atendidos", about_stat3: "Reseñas 5 Estrellas",
+    about_tag: "Est. Orlando, FL", about_badge_main: "Técnicos Certificados ASE", about_badge_sub: "Diagnóstico y herramientas de fábrica",
+    why_eyebrow: "Por Qué Elegirnos",
+    why_desc: "No solo reparamos autos. Ingeniamos confianza. Cada vehículo que entra a nuestro taller recibe el mismo tratamiento de precisión.",
+    why_1_title: "Servicio en el Día", why_1_desc: "La mayoría de reparaciones se completan en horas. Sin demoras innecesarias. Respetamos tu tiempo tanto como tu vehículo.",
+    why_2_title: "Técnicos Certificados", why_2_desc: "Técnicos master certificados ASE con décadas de experiencia combinada en todas las marcas y modelos.",
+    why_3_title: "Todas las Marcas", why_3_desc: "Desde Honda Civic hasta BMW Serie M, Jeeps hasta Lamborghinis. Nuestros equipos cubren todos los protocolos.",
+    why_4_title: "Diagnóstico Avanzado", why_4_desc: "Escáneres OBD-II de nivel fabricante, osciloscopios y diagnósticos con IA que detectan problemas antes de que fallen.",
+    why_5_title: "Especialistas en Performance", why_5_desc: "Tuning de ECU, mejoras de suspensión, configuraciones de turbo. Hacemos los autos rápidos más rápidos.",
+    why_6_title: "Precios Honestos", why_6_desc: "Sin cargos ocultos. Sin ventas forzadas. Presupuestos transparentes con aprobación digital antes de cualquier trabajo.",
+    svc_eyebrow: "Nuestros Servicios", svc_title: "PRECISIÓN\nSIEMPRE",
+    svc_desc: "Desde mantenimiento rutinario hasta builds de performance completos, cada servicio en Zenith se ejecuta con la misma obsesión por el detalle.",
+    svc_1_title: "Reparación de Motor", svc_1_desc: "Diagnóstico completo de motor, reconstrucciones y reemplazos para todo tipo de vehículos.",
+    svc_2_title: "Cambio de Aceite", svc_2_desc: "Sintético completo, convencional o alto kilometraje. Entrada y salida en 20 minutos.",
+    svc_3_title: "Servicio de Frenos", svc_3_desc: "Pastillas, discos, calibres y purga de líquido de frenos. Frenada más corta, más segura.",
+    svc_4_title: "Transmisión", svc_4_desc: "Automática, manual, CVT. Servicio, reconstrucción o reemplazo con garantía.",
+    svc_5_title: "Sistema Eléctrico", svc_5_desc: "Cableado, alternadores, arrancadores, programación de ECU y diagnóstico eléctrico complejo.",
+    svc_6_title: "Diagnóstico", svc_6_desc: "Escáneres de nivel fabricante y diagnósticos con IA para identificar cualquier problema rápidamente.",
+    svc_7_title: "Suspensión", svc_7_desc: "Amortiguadores, espirales, coilovers, alineación y corrección completa de geometría.",
+    svc_8_title: "Mejoras de Performance", svc_8_desc: "Admisiones, escapes, turbos, tuning de ECU. Libera lo que tu auto tiene por dentro.",
+    svc_9_title: "Afinación", svc_9_desc: "Bujías, filtros, correas y servicio del sistema de combustible para mantener el motor al máximo.",
+    svc_10_title: "Semiejes CV", svc_10_desc: "Juntas homocinéticas, semiejes y reparaciones de árbol de transmisión para tracción delantera y total.",
+    svc_cta: "Reservar",
+    ai_eyebrow: "Con Inteligencia Artificial", ai_title: "ASISTENTE\nDE AUTO IA",
+    ai_desc: "Describí en tus propias palabras qué le pasa a tu auto. Nuestro mecánico IA analiza los síntomas, identifica las posibles causas y te da una estimación de costo honesta — en segundos.",
+    ai_feat_1: "Evaluación instantánea de urgencia", ai_feat_2: "Análisis de causas probables",
+    ai_feat_3: "Rango estimado de costo de reparación", ai_feat_4: "Tiempo aproximado de reparación",
+    ai_feat_5: "Recomendación personalizada",
+    chat_online: "En línea — Listo para ayudarte",
+    chat_welcome: "👋 ¡Hola! Soy tu mecánico IA. Describí qué está pasando con tu auto y te ayudo a identificar el problema, estimar costos y recomendar el servicio correcto.",
+    chat_placeholder: "Describí el problema de tu auto...",
+    qr_1: "Ruido extraño", qr_2: "Luz de motor", qr_3: "Vibración en frenos", qr_4: "Motor tembloroso",
+    vin_eyebrow: "Búsqueda de Vehículo", vin_title: "ESCANEAR VIN",
+    vin_desc: "Ingresá tu Número de Identificación Vehicular y detectamos tu auto exacto para personalizar las recomendaciones de servicio.",
+    vin_placeholder: "Ingresá el VIN de 17 caracteres...", vin_btn: "Decodificar VIN",
+    vin_hint: "Encontrás el VIN en el tablero lado conductor, la pegatina del marco de la puerta o el documento de registro",
+    vin_book: "Reservar Servicio para este Vehículo",
+    ba_eyebrow: "Transformaciones", ba_title: "ANTES Y\nDESPUÉS",
+    ba_desc: "Deslizá el control para ver la diferencia Zenith. Resultados reales de vehículos atendidos en nuestro taller.",
+    ba_before: "Antes", ba_after: "Después",
+    ba_1_title: "Cambio de Discos y Pastillas", ba_1_desc: "Cambio completo de discos y pastillas de freno en un Chevrolet Corvette — más potencia y mejor respuesta al frenar.",
+    ba_2_title: "Detallado de Motor", ba_2_desc: "Desengrasado y detallado completo del compartimento del motor. Mantenimiento más fácil, mejor disipación de calor.",
+    calc_eyebrow: "Estimador Inteligente", calc_title: "CALCULADORA\nDE SERVICIO",
+    calc_desc: "Contanos sobre tu vehículo y generamos un plan de mantenimiento personalizado con niveles de prioridad y costos estimados.",
+    calc_header: "Estimador de Servicios Vehiculares", calc_sub: "Obtené una estimación instantánea de los servicios recomendados",
+    calc_make: "Marca del Vehículo", calc_year: "Año del Modelo", calc_mileage: "Kilometraje Actual", calc_last_service: "Último Servicio",
+    calc_btn: "Generar Mi Plan de Servicio", calc_total: "Total Estimado",
+    calc_disclaimer: "Los precios pueden variar. Reservá para cotización exacta.",
+    calc_book: "Reservar Estos Servicios",
+    test_eyebrow: "Reseñas de Clientes", test_title: "LO QUE\nDICEN DE NOSOTROS",
+    test_1_text: '"Zenith es el único taller en el que confío para mi M4. Diagnosticaron un problema que tres concesionarios fallaron en encontrar, lo resolvieron el mismo día y cobraron la mitad de lo esperado."',
+    test_2_text: '"Llevé mi Porsche para una renovación completa de suspensión. El equipo de Zenith lo trató como si fuera suyo. La calidad de marcha ahora es increíble."',
+    test_3_text: '"Usé el asistente IA de la web antes de llamar. Identificó exactamente el problema de mi Toyota. Vine, confirmado en 10 minutos, reparado en 2 horas. Esto es el futuro."',
+    test_4_text: '"Como hispano en Orlando, encontrar un taller honesto y de alta calidad es difícil. Zenith supera cualquier expectativa. El equipo habla español y el trabajo es de primer nivel."',
+    test_5_text: '"El tuning de performance de mi Mustang GT500 fue perfecto. 35hp de ganancia, sin problemas de conducción, completamente legal en la calle. No voy a ningún otro taller."',
+    test_6_text: '"Después de un accidente serio no creía que mi Mercedes volvería a ser el mismo. Zenith manejó la restauración mecánica completa sin ningún compromiso."',
+    loc_eyebrow: "Cómo Llegar", loc_title: "VISITÁ\nZENITH",
+    loc_addr_label: "Dirección", loc_hours_label: "Horario",
+    loc_hours: "Lun–Vie 7:30am–6:00pm<br>Sábado 8:00am–4:00pm<br>Domingo Cerrado",
+    loc_phone_label: "Teléfono", loc_btn: "Cómo Llegar",
+    contact_eyebrow: "Contactanos", contact_title: "RESERVÁ TU\nTURNO",
+    contact_desc: "¿Listo para experimentar la diferencia Zenith? Completá el formulario y nuestro equipo confirmará tu turno en 5 minutos durante el horario comercial.",
+    contact_wa: "Chatear por WhatsApp",
+    contact_promise_title: "Nuestra Promesa",
+    contact_promise: "Respondemos cada consulta en 5 minutos durante el horario comercial. Sin bots, sin demoras — un técnico real listo para ayudarte.",
+    form_name: "Nombre Completo", form_name_ph: "Juan García", form_name_err: "Por favor ingresá tu nombre",
+    form_phone: "Teléfono", form_phone_ph: "(407) 000-0000", form_phone_err: "Por favor ingresá un número válido",
+    form_vehicle: "Vehículo (Año, Marca, Modelo)", form_vehicle_ph: "2021 BMW M4", form_vehicle_err: "Por favor describí tu vehículo",
+    form_service: "Servicio Necesario", form_service_ph: "Seleccioná un servicio...", form_service_other: "Otro",
+    form_message: "Describí el Problema", form_message_ph: "Contanos qué está pasando con tu auto...",
+    form_submit: "Reservar Mi Turno →",
+    footer_desc: "El centro de performance automotriz premium de Orlando. Donde la precisión se encuentra con la pasión, cada día.",
+    footer_services: "Servicios", footer_company: "Empresa", footer_contact: "Contacto",
+    footer_careers: "Empleos", footer_copy: "© 2025 Zenith Performance & Repair. Todos los derechos reservados.",
+    toast_sent: "✅ ¡Solicitud de turno enviada! Confirmamos en 5 minutos.",
+    toast_error: "⚠️ Por favor completá todos los campos requeridos.",
+  }
+};
+
+let currentLang = localStorage.getItem('zenith_lang') || (navigator.language.startsWith('es') ? 'es' : 'en');
+
+function setLang(lang, e) {
+  if(e) e.stopPropagation();
+  currentLang = lang;
+  localStorage.setItem('zenith_lang', lang);
+  applyTranslations();
+  updateLangUI();
+}
+
+function toggleLang() {
+  setLang(currentLang === 'en' ? 'es' : 'en');
+}
+
+function applyTranslations() {
+  const t = translations[currentLang];
+  document.documentElement.lang = currentLang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = t[key];
+      } else {
+        el.innerHTML = t[key].replace(/\n/g, '<br>');
+      }
+    }
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key]) el.placeholder = t[key];
+  });
+  // Update chat welcome msg
+  const firstBubble = document.querySelector('.msg.bot .msg-bubble');
+  if (firstBubble && t.chat_welcome) firstBubble.innerHTML = t.chat_welcome;
+  // Quick replies
+  document.querySelectorAll('.quick-reply').forEach((btn, i) => {
+    const key = `qr_${i+1}`;
+    if (t[key]) btn.textContent = t[key];
+  });
+}
+
+function updateLangUI() {
+  ['langEN','langES','mLangEN','mLangES'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (id.includes('EN')) el.classList.toggle('active', currentLang === 'en');
+    if (id.includes('ES')) el.classList.toggle('active', currentLang === 'es');
+  });
+}
+
+// ═══════════════════════════════════════════════════════
+// CURSOR
+// ═══════════════════════════════════════════════════════
+const cursor = document.getElementById('cursor');
+const follower = document.getElementById('cursor-follower');
+let mx = 0, my = 0, fx = 0, fy = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx + 'px';
+  cursor.style.top = my + 'px';
+});
+function animFollower() {
+  fx += (mx - fx) * 0.12;
+  fy += (my - fy) * 0.12;
+  follower.style.left = fx + 'px';
+  follower.style.top = fy + 'px';
+  requestAnimationFrame(animFollower);
+}
+animFollower();
+document.querySelectorAll('a,button,.service-card,.why-card,.testimonial-card').forEach(el => {
+  el.addEventListener('mouseenter', () => { cursor.style.transform='translate(-50%,-50%) scale(2.5)'; follower.style.transform='translate(-50%,-50%) scale(1.5)'; follower.style.opacity='0.5'; });
+  el.addEventListener('mouseleave', () => { cursor.style.transform='translate(-50%,-50%) scale(1)'; follower.style.transform='translate(-50%,-50%) scale(1)'; follower.style.opacity='1'; });
+});
+
+// ═══════════════════════════════════════════════════════
+// NAVBAR SCROLL
+// ═══════════════════════════════════════════════════════
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// ═══════════════════════════════════════════════════════
+// HAMBURGER
+// ═══════════════════════════════════════════════════════
+function toggleMenu() {
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+// ═══════════════════════════════════════════════════════
+// WHY CARD MOUSE GLOW
+// ═══════════════════════════════════════════════════════
+document.querySelectorAll('.why-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+    card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+  });
+});
+
+// ═══════════════════════════════════════════════════════
+// SCROLL REVEAL
+// ═══════════════════════════════════════════════════════
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ═══════════════════════════════════════════════════════
+// COUNTER ANIMATION
+// ═══════════════════════════════════════════════════════
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const target = parseInt(el.dataset.target);
+    const duration = 2000;
+    const start = performance.now();
+    function update(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(eased * target).toLocaleString();
+      if (progress < 1) requestAnimationFrame(update);
+      else el.textContent = target.toLocaleString();
+    }
+    requestAnimationFrame(update);
+    counterObserver.unobserve(el);
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+// ═══════════════════════════════════════════════════════
+// BEFORE/AFTER SLIDER
+// ═══════════════════════════════════════════════════════
+function initBASlider(wrapperId, afterId, dividerId) {
+  const wrap = document.getElementById(wrapperId);
+  const after = document.getElementById(afterId);
+  const divider = document.getElementById(dividerId);
+  if (!wrap) return;
+  let dragging = false;
+  function move(x) {
+    const r = wrap.getBoundingClientRect();
+    const pct = Math.max(5, Math.min(95, ((x - r.left) / r.width) * 100));
+    after.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+    divider.style.left = pct + '%';
+  }
+  wrap.addEventListener('mousedown', e => { dragging = true; move(e.clientX); });
+  window.addEventListener('mouseup', () => dragging = false);
+  window.addEventListener('mousemove', e => { if (dragging) move(e.clientX); });
+  wrap.addEventListener('touchstart', e => { dragging = true; }, {passive:true});
+  window.addEventListener('touchend', () => dragging = false);
+  window.addEventListener('touchmove', e => { if (dragging) move(e.touches[0].clientX); }, {passive:true});
+}
+initBASlider('baSlider1','baAfter1','baDivider1');
+
+// ═══════════════════════════════════════════════════════
+// VIN DECODER
+// ═══════════════════════════════════════════════════════
+const vinData = {
+  '1HG': {make:'Honda', model:'Accord', year:'2022', engine:'2.0L i-VTEC'},
+  '1FA': {make:'Ford', model:'Mustang', year:'2021', engine:'5.0L V8'},
+  'WBA': {make:'BMW', model:'3 Series', year:'2022', engine:'2.0L TwinPower'},
+  'WDD': {make:'Mercedes-Benz', model:'C-Class', year:'2023', engine:'2.0L Turbo'},
+  'JM1': {make:'Mazda', model:'CX-5', year:'2021', engine:'2.5L SKYACTIV'},
+  '2HG': {make:'Honda', model:'Civic', year:'2020', engine:'1.5L Turbo'},
+  '1G1': {make:'Chevrolet', model:'Camaro', year:'2022', engine:'6.2L V8'},
+  'WP0': {make:'Porsche', model:'911 Carrera', year:'2023', engine:'3.0L Twin-Turbo'},
+  'JN1': {make:'Nissan', model:'GT-R', year:'2022', engine:'3.8L Twin-Turbo V6'},
+  '1C4': {make:'Jeep', model:'Grand Cherokee', year:'2023', engine:'3.6L Pentastar V6'},
+};
+function decodeVin() {
+  const vin = document.getElementById('vinInput').value.trim().toUpperCase();
+  const result = document.getElementById('vinResult');
+  if (vin.length < 3) { showToast('⚠️ Enter at least 3 VIN characters to decode.'); return; }
+  const prefix = vin.substring(0, 3);
+  const match = vinData[prefix];
+  if (match) {
+    document.getElementById('vinCarName').innerHTML = `<span>${match.year}</span> ${match.make} <span style="color:var(--violet)">${match.model}</span>`;
+    document.getElementById('vinWelcome').textContent = currentLang === 'es' ? `¡Bienvenido, propietario del ${match.make} ${match.model}!` : `Welcome back, ${match.make} ${match.model} owner!`;
+    document.getElementById('vinDetails').innerHTML = `
+      <div class="vin-detail"><div class="vin-detail-label">${currentLang==='es'?'Marca':'Make'}</div><div class="vin-detail-value">${match.make}</div></div>
+      <div class="vin-detail"><div class="vin-detail-label">${currentLang==='es'?'Año':'Year'}</div><div class="vin-detail-value">${match.year}</div></div>
+      <div class="vin-detail"><div class="vin-detail-label">${currentLang==='es'?'Motor':'Engine'}</div><div class="vin-detail-value">${match.engine}</div></div>
+    `;
+  } else {
+    document.getElementById('vinCarName').innerHTML = currentLang === 'es' ? `<span style="color:var(--violet)">VIN detectado</span>` : `<span style="color:var(--violet)">VIN Detected</span>`;
+    document.getElementById('vinWelcome').textContent = currentLang === 'es' ? 'Vehículo identificado. Reservá tu servicio ahora.' : 'Vehicle identified. Book your service now.';
+    document.getElementById('vinDetails').innerHTML = `
+      <div class="vin-detail"><div class="vin-detail-label">VIN</div><div class="vin-detail-value" style="font-size:11px;">${vin}</div></div>
+      <div class="vin-detail"><div class="vin-detail-label">${currentLang==='es'?'Estado':'Status'}</div><div class="vin-detail-value" style="color:#22c55e;">✓ ${currentLang==='es'?'Válido':'Valid'}</div></div>
+      <div class="vin-detail"><div class="vin-detail-label">${currentLang==='es'?'Acción':'Action'}</div><div class="vin-detail-value" style="color:var(--violet);">${currentLang==='es'?'Reservar':'Book Now'}</div></div>
+    `;
+  }
+  result.classList.add('show');
+}
+document.getElementById('vinInput').addEventListener('keydown', e => { if(e.key==='Enter') decodeVin(); });
+
+// ═══════════════════════════════════════════════════════
+// MAINTENANCE CALCULATOR
+// ═══════════════════════════════════════════════════════
+function calculateServices() {
+  const make = document.getElementById('calcMake').value;
+  const year = document.getElementById('calcYear').value;
+  const mileage = document.getElementById('calcMileage').value;
+  const lastService = document.getElementById('calcLastService').value;
+  if (!make || !year || !mileage || !lastService) { showToast(translations[currentLang].toast_error); return; }
+  const t = translations[currentLang];
+  let services = [];
+  if (mileage === 'low') {
+    services = [
+      {name: t.svc_2_title, priority:'low', price:'$49–$89', time:'20 min'},
+      {name: t.svc_6_title, priority:'medium', price:'$89–$149', time:'1 hr'},
+    ];
+  } else if (mileage === 'mid') {
+    services = [
+      {name: t.svc_2_title, priority:'high', price:'$49–$89', time:'20 min'},
+      {name: t.svc_3_title, priority:'medium', price:'$199–$399', time:'2–3 hr'},
+      {name: t.svc_6_title, priority:'medium', price:'$89–$149', time:'1 hr'},
+    ];
+  } else if (mileage === 'high') {
+    services = [
+      {name: t.svc_2_title, priority:'high', price:'$49–$89', time:'20 min'},
+      {name: t.svc_3_title, priority:'high', price:'$199–$399', time:'2–3 hr'},
+      {name: t.svc_9_title, priority:'medium', price:'$149–$249', time:'1–2 hr'},
+      {name: t.svc_7_title, priority:'medium', price:'$299–$599', time:'3–4 hr'},
+    ];
+  } else {
+    services = [
+      {name: t.svc_2_title, priority:'high', price:'$49–$89', time:'20 min'},
+      {name: t.svc_3_title, priority:'high', price:'$199–$399', time:'2–3 hr'},
+      {name: t.svc_9_title, priority:'high', price:'$149–$249', time:'1–2 hr'},
+      {name: t.svc_1_title, priority:'medium', price:'$299–$899', time:'4–8 hr'},
+      {name: t.svc_7_title, priority:'medium', price:'$299–$599', time:'3–4 hr'},
+    ];
+  }
+  const labelMap = {high: currentLang==='es'?'ALTA':'HIGH', medium: currentLang==='es'?'MEDIA':'MEDIUM', low: currentLang==='es'?'BAJA':'LOW'};
+  const html = services.map(s => `
+    <div class="calc-service-item ${s.priority}">
+      <div><div class="calc-service-name">${s.name}</div><div class="calc-service-meta">${s.time} · <span style="color:${s.priority==='high'?'#ef4444':s.priority==='medium'?'#f59e0b':'#22c55e'}">${labelMap[s.priority]}</span></div></div>
+      <div class="calc-service-price">${s.price}</div>
+    </div>
+  `).join('');
+  document.getElementById('calcServicesList').innerHTML = html;
+  document.getElementById('calcCarLabel').textContent = `${year} ${make} — ${currentLang==='es'?'Plan personalizado':'Personalized plan'}`;
+  const totals = {low:'$138',mid:'$337–$637',high:'$696–$1,336',very_high:'$995–$1,835'};
+  const totNum = totals[mileage] || '$349+';
+  document.getElementById('calcTotalNum').textContent = totNum;
+  const r = document.getElementById('calcResult');
+  r.classList.add('show');
+  r.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+// ═══════════════════════════════════════════════════════
+// ZENITH SERVICE ADVISOR
+// ═══════════════════════════════════════════════════════
+let zsaHistory = [];
+let zsaCollected = {};
+let zsaDiagnosisShown = false;
+let zsaInactivityTimer = null;
+let zsaBubbleTimer = null;
+let zsaBubbleDismissed = false;
+
+const ZSA_PHONE = '13213684502';
+
+const ZSA_FAB_LABELS = [
+  'Zenith Service Advisor',
+  'Need a vehicle diagnosis?',
+  'Brake issues?',
+  'Check Engine Light?',
+  'Get a repair estimate',
+];
+let zsaFabIdx = 0;
+
+function zsaRotateFab() {
+  const el = document.getElementById('zsaFabText');
+  if (!el) return;
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(6px)';
+  setTimeout(() => {
+    zsaFabIdx = (zsaFabIdx + 1) % ZSA_FAB_LABELS.length;
+    el.textContent = ZSA_FAB_LABELS[zsaFabIdx];
+    el.style.opacity = '1';
+    el.style.transform = 'translateY(0)';
+  }, 300);
+}
+setInterval(zsaRotateFab, 4000);
+
+// Inactivity bubble
+function zsaResetInactivity() {
+  clearTimeout(zsaInactivityTimer);
+  if (zsaBubbleDismissed) return;
+  zsaInactivityTimer = setTimeout(() => {
+    if (!document.getElementById('zsaOverlay').classList.contains('open')) {
+      document.getElementById('zsaBubble').classList.add('show');
+    }
+  }, 20000);
+}
+document.addEventListener('mousemove', zsaResetInactivity);
+document.addEventListener('keydown', zsaResetInactivity);
+document.addEventListener('touchstart', zsaResetInactivity);
+zsaResetInactivity();
+
+function zsaCloseBubble() {
+  document.getElementById('zsaBubble').classList.remove('show');
+  zsaBubbleDismissed = true;
+  clearTimeout(zsaInactivityTimer);
+}
+
+function zsaOpen() {
+  document.getElementById('zsaBubble').classList.remove('show');
+  document.getElementById('zsaOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function zsaClose() {
+  document.getElementById('zsaOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function zsaOverlayClick(e) {
+  if (e.target === document.getElementById('zsaOverlay')) zsaClose();
+}
+
+// ── ZSA i18n strings ──
+const zsaT = {
+  en: {
+    welcome: "👋 Welcome to Zenith Performance & Repair.\n\nI'm your Zenith Service Advisor. I'll help identify what may be happening with your vehicle and prepare a complete summary before one of our technicians reviews your case.\n\nLet's start — what's the **year, make and model** of your vehicle?",
+    appointmentAsk: "Based on this assessment, I'd love to get you scheduled.\n\nWhat's your **name**, and do you have a preferred day and time for the appointment?",
+    thankYou: "Thank you for trusting Zenith Performance & Repair. Our team will be ready when you arrive. See you soon! 🔧",
+    waBtn: "Continue on WhatsApp",
+    waNote: "Your service summary has already been prepared for our technicians. Just tap Send.",
+    error: "Our system is momentarily unavailable. Please call us directly at (321) 368-4502 — we're happy to help!",
+    thinking: ["Analyzing symptoms...","Reviewing your case...","Thinking...","Processing..."],
+    diagTitle: "Preliminary Assessment",
+    diagUrgency: "Urgency",
+    diagSafe: "Safe to Drive?",
+    diagTime: "Est. Repair Time",
+    diagCost: "Est. Cost",
+    diagCauses: "Possible Causes",
+    diagConfidence: "confidence",
+    diagDisclaimer: "This is an AI-assisted preliminary assessment and does not replace a professional inspection by a certified technician.",
+    chips: ["Strange noise","Check engine light","Brake issue","Engine shaking"],
+    placeholder: "Describe what's happening with your vehicle…",
+    startBtn: "Start Diagnosis",
+    statusOnline: "Online — Ready to assist",
+    introNote: "Usually takes less than 2 minutes",
+    introSteps: ["Diagnose","Report","Book"],
+    bubble: "👋 Need help with your vehicle? I can prepare a diagnosis before you speak with one of our technicians.",
+    systemPrompt: `You are the Zenith Service Advisor — a professional, warm, expert digital service advisor for Zenith Performance & Repair, a premium auto workshop in Orlando, Florida.
+
+You are NOT a generic chatbot. You behave like an experienced service advisor at a luxury dealership. Respond ONLY in English.
+
+YOUR MISSION:
+1. Collect vehicle info (year, make, model, mileage, engine if relevant)
+2. Ask dynamic follow-up questions based on their specific symptoms — adapt completely to what they describe
+3. Collect: symptoms, when it started, dashboard warning lights, recent repairs, is it safe to drive
+4. Once you have enough info (at least 3-4 exchanges), produce a DIAGNOSIS CARD in JSON
+5. After the diagnosis, ask for their name and preferred appointment day/time
+6. Then generate the WhatsApp message
+
+CONVERSATION STYLE: Warm, professional, human. Ask ONE question at a time. Short paragraphs. Show expertise. Never be alarmist.
+
+DIAGNOSIS CARD — output EXACTLY this JSON (nothing else on that turn):
+{"type":"DIAGNOSIS","vehicle":"[Year Make Model]","mileage":"[X miles]","concern":"[main issue]","causes":["cause 1","cause 2","cause 3"],"urgency":"HIGH|MEDIUM|LOW","urgencyEmoji":"🔴|🟠|🟢","repairTime":"[X hours]","costRange":"$[X]–$[Y]","confidence":[70-95],"safe":"[Yes / Drive with caution / No — tow recommended]"}
+
+WHATSAPP MESSAGE — after collecting appointment preference, output EXACTLY:
+{"type":"WHATSAPP","message":"[full professional WhatsApp message with all collected info, formatted with line breaks]"}`
+  },
+  es: {
+    welcome: "👋 Bienvenido a Zenith Performance & Repair.\n\nSoy tu Zenith Service Advisor. Te voy a ayudar a identificar lo que puede estar ocurriendo con tu vehículo y a preparar un resumen completo antes de que uno de nuestros técnicos revise tu caso.\n\nEmpecemos — ¿cuál es el **año, marca y modelo** de tu vehículo?",
+    appointmentAsk: "Con base en este diagnóstico, me encantaría agendarte una cita.\n\n¿Cuál es tu **nombre** y tenés algún día y horario preferido para el turno?",
+    thankYou: "¡Gracias por confiar en Zenith Performance & Repair! Nuestro equipo estará listo cuando llegues. ¡Hasta pronto! 🔧",
+    waBtn: "Continuar por WhatsApp",
+    waNote: "El resumen de tu servicio ya fue preparado para nuestros técnicos. Solo tocá Enviar.",
+    error: "Nuestro sistema está momentáneamente no disponible. Llamanos directamente al (321) 368-4502 — ¡con gusto te ayudamos!",
+    thinking: ["Analizando síntomas...","Revisando tu caso...","Procesando...","Pensando..."],
+    diagTitle: "Evaluación Preliminar",
+    diagUrgency: "Urgencia",
+    diagSafe: "¿Se puede manejar?",
+    diagTime: "Tiempo est. de reparación",
+    diagCost: "Costo estimado",
+    diagCauses: "Posibles causas",
+    diagConfidence: "confianza",
+    diagDisclaimer: "Esta es una evaluación preliminar asistida por IA y no reemplaza una inspección profesional por un técnico certificado.",
+    chips: ["Ruido extraño","Luz de motor encendida","Problema de frenos","Motor temblando"],
+    placeholder: "Describí lo que le pasa a tu vehículo…",
+    startBtn: "Iniciar Diagnóstico",
+    statusOnline: "En línea — Listo para ayudarte",
+    introNote: "Generalmente toma menos de 2 minutos",
+    introSteps: ["Diagnosticar","Reporte","Turno"],
+    bubble: "👋 ¿Necesitás ayuda con tu vehículo? Puedo preparar un diagnóstico antes de que hables con uno de nuestros técnicos.",
+    systemPrompt: `Sos el Zenith Service Advisor — un asesor de servicio digital profesional, cálido y experto de Zenith Performance & Repair, un taller automotriz premium en Orlando, Florida.
+
+NO sos un chatbot genérico. Te comportás como un asesor de servicio experimentado de un concesionario de lujo. Respondé ÚNICAMENTE en español.
+
+TU MISIÓN:
+1. Recolectar datos del vehículo (año, marca, modelo, kilometraje, motor si aplica)
+2. Hacer preguntas dinámicas según los síntomas — adaptate completamente a lo que describe
+3. Recolectar: síntomas, cuándo empezó, luces del tablero, reparaciones recientes, si es seguro manejar
+4. Con suficiente información (al menos 3-4 intercambios), generá una TARJETA DE DIAGNÓSTICO en JSON
+5. Después del diagnóstico, preguntá nombre y horario preferido para el turno
+6. Luego generá el mensaje de WhatsApp
+
+ESTILO: Cálido, profesional, humano. Una pregunta a la vez. Párrafos cortos. Mostrá expertise. Nunca alarmista.
+
+TARJETA DE DIAGNÓSTICO — enviá EXACTAMENTE este JSON (nada más en ese turno):
+{"type":"DIAGNOSIS","vehicle":"[Año Marca Modelo]","mileage":"[X km/millas]","concern":"[problema principal]","causes":["causa 1","causa 2","causa 3"],"urgency":"ALTA|MEDIA|BAJA","urgencyEmoji":"🔴|🟠|🟢","repairTime":"[X horas]","costRange":"$[X]–$[Y]","confidence":[70-95],"safe":"[Sí / Manejá con precaución / No — se recomienda grúa]"}
+
+MENSAJE DE WHATSAPP — después de recolectar el horario, enviá EXACTAMENTE:
+{"type":"WHATSAPP","message":"[mensaje completo y profesional de WhatsApp con toda la info recolectada, formateado con saltos de línea]"}`
+  }
+};
+
+function zsaLang() { return currentLang === 'es' ? 'es' : 'en'; }
+function zsaTxt(key) { return zsaT[zsaLang()][key]; }
+
+function zsaUpdateStaticUI() {
+  const l = zsaLang();
+  // Intro button
+  const startBtn = document.querySelector('.zsa-start-btn');
+  if (startBtn) startBtn.textContent = zsaT[l].startBtn;
+  // Status
+  const status = document.querySelector('.zsa-header-status');
+  if (status) status.innerHTML = `<span style="width:6px;height:6px;border-radius:50%;background:#4ade80;display:inline-block;margin-right:5px;animation:status-pulse 2s infinite;"></span>${zsaT[l].statusOnline}`;
+  // Intro note
+  const note = document.querySelector('.zsa-intro-note');
+  if (note) note.textContent = zsaT[l].introNote;
+  // Intro steps
+  const steps = document.querySelectorAll('.zsa-intro-step span');
+  if (steps.length) zsaT[l].introSteps.forEach((s,i) => { if(steps[i]) steps[i].textContent = s; });
+  // Placeholder
+  const input = document.getElementById('zsaInput');
+  if (input) input.placeholder = zsaT[l].placeholder;
+  // Chips
+  const chips = document.querySelectorAll('.zsa-chip');
+  if (chips.length) zsaT[l].chips.forEach((c,i) => { if(chips[i]) chips[i].textContent = c; });
+  // Bubble
+  const bubble = document.getElementById('zsaBubble');
+  if (bubble) {
+    const closeBtn = bubble.querySelector('.zsa-bubble-close');
+    bubble.innerHTML = '';
+    if (closeBtn) bubble.appendChild(closeBtn);
+    bubble.appendChild(document.createTextNode(zsaT[l].bubble));
+  }
+}
+
+// Hook into existing setLang so chat UI updates when language switches
+const _origSetLang = setLang;
+// We'll call zsaUpdateStaticUI after applyTranslations — patched below
+
+function zsaStartChat() {
+  document.getElementById('zsaIntro').style.display = 'none';
+  document.getElementById('zsaChat').style.display = 'flex';
+  zsaHistory = [];
+  zsaCollected = {};
+  zsaDiagnosisShown = false;
+  document.getElementById('zsaMessages').innerHTML = '';
+  zsaUpdateStaticUI();
+  setTimeout(() => {
+    zsaBotMsg(zsaTxt('welcome'));
+  }, 400);
+  document.getElementById('zsaInput').focus();
+}
+
+function zsaBotMsg(text) {
+  const msgs = document.getElementById('zsaMessages');
+  const div = document.createElement('div');
+  div.className = 'zsa-msg bot';
+  const now = new Date();
+  const time = now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
+  div.innerHTML = `<div class="zsa-msg-bubble">${text.replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')}</div><div class="zsa-msg-meta">${time}</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function zsaUserMsg(text) {
+  const msgs = document.getElementById('zsaMessages');
+  const div = document.createElement('div');
+  div.className = 'zsa-msg user';
+  const now = new Date();
+  const time = now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
+  div.innerHTML = `<div class="zsa-msg-bubble">${text}</div><div class="zsa-msg-meta">${time}</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function zsaShowThinking() {
+  const labels = zsaTxt('thinking');
+  const label = labels[Math.floor(Math.random()*labels.length)];
+  const msgs = document.getElementById('zsaMessages');
+  const div = document.createElement('div');
+  div.className = 'zsa-thinking';
+  div.id = 'zsaThinking';
+  div.innerHTML = `<div class="zsa-dot"></div><div class="zsa-dot"></div><div class="zsa-dot"></div><span class="zsa-thinking-label">${label}</span>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function zsaHideThinking() {
+  const el = document.getElementById('zsaThinking');
+  if (el) el.remove();
+}
+
+async function zsaSend() {
+  const input = document.getElementById('zsaInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+  input.value = '';
+  input.style.height = 'auto';
+  document.getElementById('zsaChips').style.display = 'none';
+  document.getElementById('zsaSendBtn').disabled = true;
+  zsaUserMsg(msg);
+  zsaHistory.push({role:'user', content: msg});
+  zsaShowThinking();
+
+  try {
+    const resp = await fetch('/api/chat', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        system: zsaTxt('systemPrompt'),
+        messages: zsaHistory
+      })
+    });
+    const data = await resp.json();
+    const reply = data.content?.[0]?.text || '';
+    zsaHideThinking();
+    document.getElementById('zsaSendBtn').disabled = false;
+
+    const diagMatch = reply.match(/\{[\s\S]*?"type"\s*:\s*"DIAGNOSIS"[\s\S]*?\}/);
+    const waMatch   = reply.match(/\{[\s\S]*?"type"\s*:\s*"WHATSAPP"[\s\S]*?\}/);
+
+    if (diagMatch && !zsaDiagnosisShown) {
+      try {
+        const diag = JSON.parse(diagMatch[0]);
+        zsaShowDiagnosis(diag);
+        zsaCollected.diagnosis = diag;
+        zsaDiagnosisShown = true;
+        zsaHistory.push({role:'assistant', content: reply});
+        setTimeout(() => zsaBotMsg(zsaTxt('appointmentAsk')), 600);
+        return;
+      } catch(e) {}
+    }
+
+    if (waMatch) {
+      try {
+        const wa = JSON.parse(waMatch[0]);
+        zsaShowWACTA(wa.message);
+        zsaHistory.push({role:'assistant', content: reply});
+        return;
+      } catch(e) {}
+    }
+
+    zsaBotMsg(reply);
+    zsaHistory.push({role:'assistant', content: reply});
+
+  } catch(e) {
+    zsaHideThinking();
+    document.getElementById('zsaSendBtn').disabled = false;
+    zsaBotMsg(zsaTxt('error'));
+  }
+}
+
+function zsaShowDiagnosis(d) {
+  const msgs = document.getElementById('zsaMessages');
+  const t = zsaTxt;
+  const urgencyColor = (d.urgency==='HIGH'||d.urgency==='ALTA') ? '#ef4444' : (d.urgency==='MEDIUM'||d.urgency==='MEDIA') ? '#f59e0b' : '#22c55e';
+  const div = document.createElement('div');
+  div.innerHTML = `
+    <div class="zsa-diagnosis">
+      <div class="zsa-diag-title">${t('diagTitle')}</div>
+      <div class="zsa-diag-vehicle">${d.vehicle}</div>
+      <div class="zsa-diag-sub">${d.mileage} &nbsp;·&nbsp; ${d.concern}</div>
+      <div class="zsa-diag-grid">
+        <div class="zsa-diag-cell">
+          <div class="zsa-diag-cell-label">${t('diagUrgency')}</div>
+          <div class="zsa-diag-cell-value" style="color:${urgencyColor}">${d.urgencyEmoji} ${d.urgency}</div>
+        </div>
+        <div class="zsa-diag-cell">
+          <div class="zsa-diag-cell-label">${t('diagSafe')}</div>
+          <div class="zsa-diag-cell-value">${d.safe}</div>
+        </div>
+        <div class="zsa-diag-cell">
+          <div class="zsa-diag-cell-label">${t('diagTime')}</div>
+          <div class="zsa-diag-cell-value">${d.repairTime}</div>
+        </div>
+        <div class="zsa-diag-cell">
+          <div class="zsa-diag-cell-label">${t('diagCost')}</div>
+          <div class="zsa-diag-cell-value">${d.costRange}</div>
+        </div>
+      </div>
+      <div class="zsa-diag-causes">
+        <div class="zsa-diag-causes-label">${t('diagCauses')}</div>
+        ${(d.causes||[]).map(c=>`<div class="zsa-diag-cause-item">${c}</div>`).join('')}
+      </div>
+      <div class="zsa-confidence">
+        <div class="zsa-confidence-bar"><div class="zsa-confidence-fill" style="width:${d.confidence}%"></div></div>
+        <div class="zsa-confidence-label">${d.confidence}% ${t('diagConfidence')}</div>
+      </div>
+      <div class="zsa-diag-disclaimer">${t('diagDisclaimer')}</div>
+    </div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function zsaShowWACTA(waMessage) {
+  const msgs = document.getElementById('zsaMessages');
+  const encoded = encodeURIComponent(waMessage);
+  const div = document.createElement('div');
+  div.innerHTML = `
+    <div class="zsa-wa-cta">
+      <a href="https://wa.me/${ZSA_PHONE}?text=${encoded}" target="_blank" rel="noopener" class="zsa-wa-btn">
+        💬 ${zsaTxt('waBtn')}
+      </a>
+      <div class="zsa-wa-note">${zsaTxt('waNote')}</div>
+    </div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  setTimeout(() => zsaBotMsg(zsaTxt('thankYou')), 500);
+}
+
+function zsaChip(btn) {
+  document.getElementById('zsaInput').value = btn.textContent;
+  document.getElementById('zsaInput').dispatchEvent(new Event('input'));
+  zsaSend();
+}
+
+// Update ZSA UI whenever language changes
+const _zsaOrigApply = applyTranslations;
+applyTranslations = function() {
+  _zsaOrigApply();
+  zsaUpdateStaticUI();
+};
+
+// Init on load
+zsaUpdateStaticUI();
+
+// ═══════════════════════════════════════════════════════
+// FORM SUBMISSION
+// ═══════════════════════════════════════════════════════
+function submitForm() {
+  const t = translations[currentLang];
+  const name = document.getElementById('fName').value.trim();
+  const phone = document.getElementById('fPhone').value.trim();
+  const vehicle = document.getElementById('fVehicle').value.trim();
+  let valid = true;
+  ['fName','fPhone','fVehicle'].forEach(id => {
+    const val = document.getElementById(id).value.trim();
+    const err = document.getElementById(id + 'Err');
+    if (!val) { document.getElementById(id).classList.add('error'); err.classList.add('show'); valid = false; }
+    else { document.getElementById(id).classList.remove('error'); err.classList.remove('show'); }
+  });
+  if (!valid) { showToast(t.toast_error); return; }
+  const waMsg = currentLang === 'es'
+    ? `Hola Zenith! Quiero reservar un turno.\nNombre: ${name}\nTeléfono: ${phone}\nVehículo: ${vehicle}`
+    : `Hi Zenith! I'd like to book an appointment.\nName: ${name}\nPhone: ${phone}\nVehicle: ${vehicle}`;
+  window.open(`https://wa.me/13213684502?text=${encodeURIComponent(waMsg)}`, '_blank');
+  showToast(t.toast_sent);
+  ['fName','fPhone','fVehicle','fMessage'].forEach(id => { const el = document.getElementById(id); if(el) el.value = ''; });
+}
+
+// ═══════════════════════════════════════════════════════
+// TOAST
+// ═══════════════════════════════════════════════════════
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 4000);
+}
+
+// ═══════════════════════════════════════════════════════
+// GSAP ANIMATIONS
+// ═══════════════════════════════════════════════════════
+gsap.registerPlugin(ScrollTrigger);
+// Hero title animation
+gsap.from('.hero-title', { duration: 1.2, y: 60, opacity: 0, delay: 0.3, ease: 'power3.out' });
+gsap.from('.hero-eyebrow', { duration: 0.8, y: 20, opacity: 0, delay: 0.1, ease: 'power2.out' });
+gsap.from('.hero-subtitle', { duration: 0.8, y: 20, opacity: 0, delay: 0.7, ease: 'power2.out' });
+gsap.from('.hero-cta', { duration: 0.8, y: 20, opacity: 0, delay: 0.9, ease: 'power2.out' });
+// Section parallax
+gsap.utils.toArray('.section-title').forEach(el => {
+  gsap.from(el, {
+    scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
+    y: 50, opacity: 0, duration: 0.9, ease: 'power3.out'
+  });
+});
+// Stats bar
+gsap.from('.stats-bar', {
+  scrollTrigger: { trigger: '.stats-bar', start: 'top 90%' },
+  y: 30, opacity: 0, duration: 0.8, ease: 'power2.out'
+});
+
+// ═══════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════
+applyTranslations();
+updateLangUI();
+
+// Smooth scroll for all anchors
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({behavior:'smooth'}); }
+  });
+});
+</script>
+</body>
+</html>
