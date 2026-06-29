@@ -689,6 +689,19 @@ section { padding: 120px 48px; position: relative; }
 }
 .ai-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; margin-top: 64px; }
 .ai-info h2 { font-family: var(--font-display); font-size: clamp(36px, 4vw, 64px); line-height: 0.95; text-transform: uppercase; margin-bottom: 20px; }
+.zsa-inline-wrap {
+  background: #0c0c0c;
+  border: 1px solid rgba(123,47,255,0.2);
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+  height: 560px;
+}
+.zsa-inline-wrap .zsa-intro { flex: 1; justify-content: center; padding: 32px 24px; }
+.zsa-inline-wrap .zsa-chat { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.zsa-inline-wrap .zsa-messages { flex: 1; min-height: 0; }
 .ai-info p { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.8; margin-bottom: 32px; }
 .ai-features { display: flex; flex-direction: column; gap: 12px; }
 .ai-feat {
@@ -772,7 +785,26 @@ section { padding: 120px 48px; position: relative; }
 .chat-send:hover { background: var(--violet-light); transform: scale(1.05); }
 
 /* ── VIN DECODER ── */
-.vin-section { background: var(--black); }
+.vin-section {
+  background: var(--black);
+  position: relative;
+}
+.vin-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://res.cloudinary.com/dgp7uhps3/image/upload/v1782762108/IMG_8251_e28cx1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.13;
+  z-index: 0;
+  pointer-events: none;
+}
+.vin-section > * {
+  position: relative;
+  z-index: 1;
+}
 .vin-box {
   max-width: 720px; margin: 64px auto 0;
   background: var(--black-3); border: 1px solid rgba(255,255,255,0.07);
@@ -2007,32 +2039,41 @@ footer {
       </div>
     </div>
     <div class="reveal" style="transition-delay:0.15s">
-      <!-- Preview card -->
-      <div style="background:#0c0c0c;border:1px solid rgba(123,47,255,0.2);border-radius:24px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.6),inset 0 1px 0 rgba(255,255,255,0.05);">
-        <div style="padding:18px 22px;background:linear-gradient(135deg,rgba(123,47,255,0.12),rgba(123,47,255,0.04));border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:12px;">
-          <div style="width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#7B2FFF,#5B0FDF);display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 0 16px rgba(123,47,255,0.4);">🔧</div>
-          <div>
-            <div style="font-size:13px;font-weight:600;color:#fff;font-family:var(--font-ui);">Zenith Service Advisor</div>
-            <div style="font-size:11px;color:var(--violet-light);font-family:var(--font-ui);display:flex;align-items:center;gap:4px;margin-top:1px;"><span style="width:5px;height:5px;border-radius:50%;background:#4ade80;display:inline-block;"></span>Online — Ready to assist</div>
+      <!-- Embedded live chat -->
+      <div class="zsa-inline-wrap">
+        <!-- Header -->
+        <div class="zsa-header">
+          <div class="zsa-header-avatar">🔧</div>
+          <div class="zsa-header-info">
+            <div class="zsa-header-name">Zenith Service Advisor</div>
+            <div class="zsa-header-status" id="zsa2Status"></div>
           </div>
         </div>
-        <div style="padding:20px 22px;display:flex;flex-direction:column;gap:10px;">
-          <div style="align-self:flex-start;max-width:85%;">
-            <div style="padding:11px 15px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.06);border-radius:14px 14px 14px 4px;font-size:13px;color:rgba(255,255,255,0.88);line-height:1.6;font-family:var(--font-ui);">👋 Welcome to Zenith Performance & Repair. I'm your Zenith Service Advisor. Tell me what's happening with your vehicle.</div>
-          </div>
-          <div style="align-self:flex-end;max-width:85%;">
-            <div style="padding:11px 15px;background:var(--violet);border-radius:14px 14px 4px 14px;font-size:13px;color:#fff;line-height:1.6;font-family:var(--font-ui);box-shadow:0 4px 12px rgba(123,47,255,0.35);">My brakes make a grinding noise when I stop at low speed. Started 3 days ago.</div>
-          </div>
-          <div style="align-self:flex-start;display:flex;align-items:center;gap:6px;padding:10px 14px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.06);border-radius:14px 14px 14px 4px;">
-            <div style="width:5px;height:5px;border-radius:50%;background:var(--violet-light);animation:zsa-bounce 1.2s ease-in-out infinite;"></div>
-            <div style="width:5px;height:5px;border-radius:50%;background:var(--violet-light);animation:zsa-bounce 1.2s ease-in-out 0.15s infinite;"></div>
-            <div style="width:5px;height:5px;border-radius:50%;background:var(--violet-light);animation:zsa-bounce 1.2s ease-in-out 0.3s infinite;"></div>
-            <span style="font-size:10px;color:rgba(255,255,255,0.3);font-family:var(--font-ui);margin-left:4px;">Analyzing symptoms...</span>
-          </div>
+        <!-- Intro -->
+        <div class="zsa-intro zsa2-intro" id="zsa2Intro" style="padding:32px 24px;">
+          <div class="zsa-intro-icon">🔧</div>
+          <h3 style="font-size:22px;">Service Advisor</h3>
+          <p id="zsa2IntroP" style="font-size:13px;margin-bottom:24px;"></p>
+          <button class="zsa-start-btn" id="zsa2StartBtn" onclick="zsa2Start()"></button>
+          <div class="zsa-intro-note" id="zsa2Note"></div>
         </div>
-        <div style="padding:14px 22px;border-top:1px solid rgba(255,255,255,0.05);background:rgba(0,0,0,0.2);display:flex;gap:8px;align-items:center;">
-          <div style="flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:10px 14px;font-size:12px;color:rgba(255,255,255,0.2);font-family:var(--font-ui);">Describe your vehicle's issue…</div>
-          <button onclick="zsaOpen()" style="padding:10px 18px;background:var(--violet);border:none;border-radius:10px;color:#fff;font-size:12px;font-weight:500;cursor:pointer;font-family:var(--font-ui);box-shadow:0 0 16px rgba(123,47,255,0.4);white-space:nowrap;transition:all 0.2s;" data-i18n="ai_open_btn">Open Advisor →</button>
+        <!-- Chat -->
+        <div class="zsa-chat" id="zsa2Chat" style="display:none;">
+          <div class="zsa-messages" id="zsa2Messages"></div>
+          <div class="zsa-input-area">
+            <div class="zsa-quick-chips" id="zsa2Chips">
+              <button class="zsa-chip" onclick="zsa2Chip(this)">–</button>
+              <button class="zsa-chip" onclick="zsa2Chip(this)">–</button>
+              <button class="zsa-chip" onclick="zsa2Chip(this)">–</button>
+              <button class="zsa-chip" onclick="zsa2Chip(this)">–</button>
+            </div>
+            <div class="zsa-input-row">
+              <textarea class="zsa-input" id="zsa2Input" rows="1" style="font-size:16px;"
+                onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();zsa2Send()}"
+                oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px'"></textarea>
+              <button class="zsa-send" id="zsa2SendBtn" onclick="zsa2Send()">↑</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -2191,7 +2232,7 @@ footer {
         <div class="location-detail-icon">📞</div>
         <div class="location-detail-text">
           <strong data-i18n="loc_phone_label">Phone</strong>
-          <a href="tel:+13213684502" style="color:var(--violet-light);text-decoration:none;">(321) 368-4502</a>
+          <a href="tel:+14073941412" style="color:var(--violet-light);text-decoration:none;">(407) 394-1412</a>
         </div>
       </div>
       <a href="https://maps.google.com/?q=350+Kassik+Cir,+Orlando,+FL+32824" target="_blank" class="btn-navigate" style="margin-top:8px;">
@@ -2216,7 +2257,7 @@ footer {
       <div class="section-eyebrow" data-i18n="contact_eyebrow">Get In Touch</div>
       <h3 data-i18n="contact_title">BOOK YOUR<br>APPOINTMENT</h3>
       <p data-i18n="contact_desc">Ready to experience the Zenith difference? Fill out the form and our team will confirm your appointment within 5 minutes during business hours.</p>
-      <a href="https://wa.me/13213684502?text=Hi%20Zenith!%20I'd%20like%20to%20book%20an%20appointment." class="btn-whatsapp" target="_blank">
+      <a href="https://wa.me/14073941412?text=Hi%20Zenith!%20I'd%20like%20to%20book%20an%20appointment." class="btn-whatsapp" target="_blank">
         <span>💬</span> <span data-i18n="contact_wa">Chat on WhatsApp</span>
       </a>
       <div style="margin-top:32px;padding:24px;background:rgba(123,47,255,0.06);border:1px solid rgba(123,47,255,0.15);border-radius:14px;">
@@ -2294,7 +2335,7 @@ footer {
     </div>
     <div class="footer-col">
       <h4 data-i18n="footer_contact">Contact</h4>
-      <a href="tel:+13213684502">(321) 368-4502</a>
+      <a href="tel:+14073941412">(407) 394-1412</a>
       <a href="mailto:zenithmxco@gmail.com">zenithmxco@gmail.com</a>
       <a href="#location">350 Kassik Cir, Orlando FL 32824</a>
     </div>
@@ -2305,7 +2346,7 @@ footer {
       <a href="https://instagram.com/zenithmxcodetailing" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">📷</a>
       <a href="#" class="social-btn" aria-label="Facebook">📘</a>
       <a href="#" class="social-btn" aria-label="TikTok">🎵</a>
-      <a href="https://wa.me/13213684502" class="social-btn" aria-label="WhatsApp">💬</a>
+      <a href="https://wa.me/14073941412" class="social-btn" aria-label="WhatsApp">💬</a>
     </div>
   </div>
 </footer>
@@ -2765,7 +2806,7 @@ let zsaInactivityTimer = null;
 let zsaBubbleTimer = null;
 let zsaBubbleDismissed = false;
 
-const ZSA_PHONE = '13213684502';
+const ZSA_PHONE = '14073941412';
 
 const ZSA_FAB_LABELS = [
   'Zenith Service Advisor',
@@ -2834,7 +2875,7 @@ const zsaT = {
     thankYou: "Thank you for trusting Zenith Performance & Repair. Our team will be ready when you arrive. See you soon! 🔧",
     waBtn: "Continue on WhatsApp",
     waNote: "Your service summary has already been prepared for our technicians. Just tap Send.",
-    error: "Our system is momentarily unavailable. Please call us directly at (321) 368-4502 — we're happy to help!",
+    error: "Our system is momentarily unavailable. Please call us directly at (407) 394-1412 — we're happy to help!",
     thinking: ["Analyzing symptoms...","Reviewing your case...","Thinking...","Processing..."],
     diagTitle: "Preliminary Assessment",
     diagUrgency: "Urgency",
@@ -2877,7 +2918,7 @@ WHATSAPP MESSAGE — after collecting appointment preference, output EXACTLY:
     thankYou: "¡Gracias por confiar en Zenith Performance & Repair! Nuestro equipo estará listo cuando llegues. ¡Hasta pronto! 🔧",
     waBtn: "Continuar por WhatsApp",
     waNote: "El resumen de tu servicio ya fue preparado para nuestros técnicos. Solo tocá Enviar.",
-    error: "Nuestro sistema está momentáneamente no disponible. Llamanos directamente al (321) 368-4502 — ¡con gusto te ayudamos!",
+    error: "Nuestro sistema está momentáneamente no disponible. Llamanos directamente al (407) 394-1412 — ¡con gusto te ayudamos!",
     thinking: ["Analizando síntomas...","Revisando tu caso...","Procesando...","Pensando..."],
     diagTitle: "Evaluación Preliminar",
     diagUrgency: "Urgencia",
@@ -3141,6 +3182,199 @@ applyTranslations = function() {
 zsaUpdateStaticUI();
 
 // ═══════════════════════════════════════════════════════
+// ZSA INLINE (section embed) — same logic, separate state
+// ═══════════════════════════════════════════════════════
+let zsa2History = [];
+let zsa2DiagnosisShown = false;
+let zsa2Running = false;
+
+function zsa2UpdateUI() {
+  const l = zsaLang();
+  const t = zsaT[l];
+  const introP = document.getElementById('zsa2IntroP');
+  const startBtn = document.getElementById('zsa2StartBtn');
+  const note = document.getElementById('zsa2Note');
+  const status = document.getElementById('zsa2Status');
+  const input = document.getElementById('zsa2Input');
+  const chips = document.querySelectorAll('#zsa2Chips .zsa-chip');
+
+  if (introP) introP.textContent = t.welcome.replace(/👋 /,'').split('\n')[0];
+  if (startBtn) startBtn.textContent = t.startBtn;
+  if (note) note.textContent = t.introNote;
+  if (status) status.innerHTML = `<span style="width:6px;height:6px;border-radius:50%;background:#4ade80;display:inline-block;margin-right:5px;animation:status-pulse 2s infinite;"></span>${t.statusOnline}`;
+  if (input) input.placeholder = t.placeholder;
+  if (chips.length) t.chips.forEach((c, i) => { if (chips[i]) chips[i].textContent = c; });
+}
+
+function zsa2Start() {
+  document.getElementById('zsa2Intro').style.display = 'none';
+  const chat = document.getElementById('zsa2Chat');
+  chat.style.display = 'flex';
+  zsa2History = [];
+  zsa2DiagnosisShown = false;
+  document.getElementById('zsa2Messages').innerHTML = '';
+  setTimeout(() => zsa2BotMsg(zsaTxt('welcome')), 400);
+  document.getElementById('zsa2Input').focus();
+}
+
+function zsa2BotMsg(text) {
+  const msgs = document.getElementById('zsa2Messages');
+  const div = document.createElement('div');
+  div.className = 'zsa-msg bot';
+  const now = new Date();
+  const time = now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
+  div.innerHTML = `<div class="zsa-msg-bubble">${text.replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')}</div><div class="zsa-msg-meta">${time}</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function zsa2UserMsg(text) {
+  const msgs = document.getElementById('zsa2Messages');
+  const div = document.createElement('div');
+  div.className = 'zsa-msg user';
+  const now = new Date();
+  const time = now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
+  div.innerHTML = `<div class="zsa-msg-bubble">${text}</div><div class="zsa-msg-meta">${time}</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function zsa2ShowThinking() {
+  const labels = zsaTxt('thinking');
+  const label = labels[Math.floor(Math.random()*labels.length)];
+  const msgs = document.getElementById('zsa2Messages');
+  const div = document.createElement('div');
+  div.className = 'zsa-thinking';
+  div.id = 'zsa2Thinking';
+  div.innerHTML = `<div class="zsa-dot"></div><div class="zsa-dot"></div><div class="zsa-dot"></div><span class="zsa-thinking-label">${label}</span>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function zsa2HideThinking() {
+  const el = document.getElementById('zsa2Thinking');
+  if (el) el.remove();
+}
+
+async function zsa2Send() {
+  const input = document.getElementById('zsa2Input');
+  const msg = input.value.trim();
+  if (!msg || zsa2Running) return;
+  input.value = '';
+  input.style.height = 'auto';
+  document.getElementById('zsa2Chips').style.display = 'none';
+  document.getElementById('zsa2SendBtn').disabled = true;
+  zsa2Running = true;
+  zsa2UserMsg(msg);
+  zsa2History.push({role:'user', content: msg});
+  zsa2ShowThinking();
+
+  try {
+    const resp = await fetch('/api/chat', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ system: zsaTxt('systemPrompt'), messages: zsa2History })
+    });
+    const data = await resp.json();
+    const reply = data.content?.[0]?.text || '';
+    zsa2HideThinking();
+    document.getElementById('zsa2SendBtn').disabled = false;
+    zsa2Running = false;
+
+    const diagMatch = reply.match(/\{[\s\S]*?"type"\s*:\s*"DIAGNOSIS"[\s\S]*?\}/);
+    const waMatch   = reply.match(/\{[\s\S]*?"type"\s*:\s*"WHATSAPP"[\s\S]*?\}/);
+
+    if (diagMatch && !zsa2DiagnosisShown) {
+      try {
+        const diag = JSON.parse(diagMatch[0]);
+        zsa2ShowDiagnosis(diag);
+        zsa2DiagnosisShown = true;
+        zsa2History.push({role:'assistant', content: reply});
+        setTimeout(() => zsa2BotMsg(zsaTxt('appointmentAsk')), 600);
+        return;
+      } catch(e) {}
+    }
+    if (waMatch) {
+      try {
+        const wa = JSON.parse(waMatch[0]);
+        zsa2ShowWACTA(wa.message);
+        zsa2History.push({role:'assistant', content: reply});
+        return;
+      } catch(e) {}
+    }
+    zsa2BotMsg(reply);
+    zsa2History.push({role:'assistant', content: reply});
+  } catch(e) {
+    zsa2HideThinking();
+    document.getElementById('zsa2SendBtn').disabled = false;
+    zsa2Running = false;
+    zsa2BotMsg(zsaTxt('error'));
+  }
+}
+
+function zsa2ShowDiagnosis(d) {
+  const msgs = document.getElementById('zsa2Messages');
+  const t = zsaTxt;
+  const urgencyColor = (d.urgency==='HIGH'||d.urgency==='ALTA') ? '#ef4444' : (d.urgency==='MEDIUM'||d.urgency==='MEDIA') ? '#f59e0b' : '#22c55e';
+  const div = document.createElement('div');
+  div.innerHTML = `
+    <div class="zsa-diagnosis">
+      <div class="zsa-diag-title">${t('diagTitle')}</div>
+      <div class="zsa-diag-vehicle">${d.vehicle}</div>
+      <div class="zsa-diag-sub">${d.mileage} &nbsp;·&nbsp; ${d.concern}</div>
+      <div class="zsa-diag-grid">
+        <div class="zsa-diag-cell"><div class="zsa-diag-cell-label">${t('diagUrgency')}</div><div class="zsa-diag-cell-value" style="color:${urgencyColor}">${d.urgencyEmoji} ${d.urgency}</div></div>
+        <div class="zsa-diag-cell"><div class="zsa-diag-cell-label">${t('diagSafe')}</div><div class="zsa-diag-cell-value">${d.safe}</div></div>
+        <div class="zsa-diag-cell"><div class="zsa-diag-cell-label">${t('diagTime')}</div><div class="zsa-diag-cell-value">${d.repairTime}</div></div>
+        <div class="zsa-diag-cell"><div class="zsa-diag-cell-label">${t('diagCost')}</div><div class="zsa-diag-cell-value">${d.costRange}</div></div>
+      </div>
+      <div class="zsa-diag-causes">
+        <div class="zsa-diag-causes-label">${t('diagCauses')}</div>
+        ${(d.causes||[]).map(c=>`<div class="zsa-diag-cause-item">${c}</div>`).join('')}
+      </div>
+      <div class="zsa-confidence">
+        <div class="zsa-confidence-bar"><div class="zsa-confidence-fill" style="width:${d.confidence}%"></div></div>
+        <div class="zsa-confidence-label">${d.confidence}% ${t('diagConfidence')}</div>
+      </div>
+      <div class="zsa-diag-disclaimer">${t('diagDisclaimer')}</div>
+    </div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function zsa2ShowWACTA(waMessage) {
+  const msgs = document.getElementById('zsa2Messages');
+  const encoded = encodeURIComponent(waMessage);
+  const div = document.createElement('div');
+  div.innerHTML = `
+    <div class="zsa-wa-cta">
+      <a href="https://wa.me/${ZSA_PHONE}?text=${encoded}" target="_blank" rel="noopener" class="zsa-wa-btn">
+        💬 ${zsaTxt('waBtn')}
+      </a>
+      <div class="zsa-wa-note">${zsaTxt('waNote')}</div>
+    </div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  setTimeout(() => zsa2BotMsg(zsaTxt('thankYou')), 500);
+}
+
+function zsa2Chip(btn) {
+  document.getElementById('zsa2Input').value = btn.textContent;
+  document.getElementById('zsa2Input').dispatchEvent(new Event('input'));
+  zsa2Send();
+}
+
+// Hook zsa2 into language updates
+const _zsaOrigApply2 = applyTranslations;
+applyTranslations = function() {
+  _zsaOrigApply2();
+  zsa2UpdateUI();
+};
+
+// Init zsa2 UI on load
+zsa2UpdateUI();
+
+// ═══════════════════════════════════════════════════════
 // FORM SUBMISSION
 // ═══════════════════════════════════════════════════════
 function submitForm() {
@@ -3159,7 +3393,7 @@ function submitForm() {
   const waMsg = currentLang === 'es'
     ? `Hola Zenith! Quiero reservar un turno.\nNombre: ${name}\nTeléfono: ${phone}\nVehículo: ${vehicle}`
     : `Hi Zenith! I'd like to book an appointment.\nName: ${name}\nPhone: ${phone}\nVehicle: ${vehicle}`;
-  window.open(`https://wa.me/13213684502?text=${encodeURIComponent(waMsg)}`, '_blank');
+  window.open(`https://wa.me/14073941412?text=${encodeURIComponent(waMsg)}`, '_blank');
   showToast(t.toast_sent);
   ['fName','fPhone','fVehicle','fMessage'].forEach(id => { const el = document.getElementById(id); if(el) el.value = ''; });
 }
