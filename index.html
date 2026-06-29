@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Zenith Performance & Repair | Orlando's Premier Auto Workshop</title>
 <meta name="description" content="Orlando's most advanced automotive performance center. Engine repair, diagnostics, performance upgrades & more. Book your appointment today.">
 <meta property="og:title" content="Zenith Performance & Repair — Orlando FL">
@@ -1147,13 +1147,18 @@ footer {
 /* ── ZENITH SERVICE ADVISOR FLOATING BTN ── */
 .zsa-fab {
   position: fixed; bottom: 32px; right: 32px; z-index: 500;
-  width: 60px; height: 60px; border-radius: 50%;
+  width: 64px; height: 64px; min-width: 64px; min-height: 64px;
+  border-radius: 50%;
   background: #0a0a0a;
   box-shadow: 0 8px 32px rgba(123,47,255,0.5), 0 0 0 2px rgba(123,47,255,0.6);
   cursor: pointer; border: none;
   display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
   transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
   animation: zsa-pulse 3s ease-in-out infinite;
+  padding: 0;
+  box-sizing: border-box;
 }
 @keyframes zsa-pulse {
   0%,100%{box-shadow:0 8px 32px rgba(123,47,255,0.5),0 0 0 2px rgba(123,47,255,0.6)}
@@ -1354,7 +1359,7 @@ footer {
   flex: 1; background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.09);
   border-radius: 14px; padding: 11px 16px;
-  color: #fff; font-size: 13.5px; font-family: var(--font-ui);
+  color: #fff; font-size: 16px; font-family: var(--font-ui);
   outline: none; resize: none; line-height: 1.5;
   transition: border-color 0.2s;
   max-height: 100px; overflow-y: auto;
@@ -1450,7 +1455,8 @@ footer {
 @media (max-width: 768px) {
   nav { padding: 16px 20px; }
   nav.scrolled { padding: 12px 20px; }
-  .nav-links, .nav-right .btn-nav, .nav-right .lang-toggle { display: none; }
+  .nav-links, .nav-right .btn-nav { display: none; }
+  .nav-right .lang-toggle { display: flex; }
   .hamburger { display: flex; }
   .nav-right { gap: 10px; }
 
@@ -1557,7 +1563,7 @@ footer {
 
 <!-- ZENITH SERVICE ADVISOR FLOATING BTN -->
 <button class="zsa-fab" id="zsaFab" onclick="zsaOpen()" aria-label="Zenith Service Advisor">
-  <div class="zsa-fab-icon"><img src="https://res.cloudinary.com/dgp7uhps3/image/upload/v1782696990/IMG_8216_npk7ow_tel8y4.png" alt="Zenith" style="width:40px;height:40px;object-fit:contain;"></div>
+  <div class="zsa-fab-icon"><img src="https://res.cloudinary.com/dgp7uhps3/image/upload/v1782696990/IMG_8216_npk7ow_tel8y4.png" alt="Zenith" style="width:50px;height:50px;object-fit:contain;"></div>
 </button>
 
 <!-- ZSA INACTIVITY BUBBLE -->
@@ -1630,7 +1636,6 @@ footer {
 <nav id="navbar">
   <a href="#" class="nav-logo">
     <img src="https://res.cloudinary.com/dgp7uhps3/image/upload/v1782696990/IMG_8216_npk7ow_tel8y4.png" alt="Zenith Performance & Repair" class="nav-logo-icon">
-    <span class="nav-logo-text">Zenith <span>Performance</span></span>
   </a>
   <ul class="nav-links">
     <li><a href="#why" data-i18n="nav_why">Why Zenith</a></li>
@@ -2269,7 +2274,6 @@ footer {
     <div class="footer-brand">
       <a href="#" class="nav-logo" style="text-decoration:none;display:flex;align-items:center;gap:10px;">
         <img src="https://res.cloudinary.com/dgp7uhps3/image/upload/v1782696990/IMG_8216_npk7ow_tel8y4.png" alt="Zenith Performance & Repair" class="nav-logo-icon">
-        <span class="nav-logo-text">Zenith <span>Performance</span></span>
       </a>
       <p data-i18n="footer_desc">Orlando's premier automotive performance center. Where precision meets passion, every single day.</p>
     </div>
